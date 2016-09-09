@@ -7,10 +7,10 @@
 #### Kaksi pelaajaa, jotka pelaavat vuoron perään.
 
 ### Kaikkien käyttäjien toiminnot: 
-- #### Pelaajat avaavat ohjelman.
-- #### He päättävät kumpi pelaa valkoisella ja kumpi mustalla.
-- #### Valkoinen aloittaa pelin ensimmäisellä siirrolla ja musta hänen jälkeensä.
-- #### Peli jatkuu kunnes toisen kuningas kaatuu.
+- Pelaajat avaavat ohjelman.
+- He päättävät kumpi pelaa valkoisella ja kumpi mustalla.
+- Valkoinen aloittaa pelin ensimmäisellä siirrolla ja musta hänen jälkeensä.
+- Peli jatkuu kunnes toisen kuningas kaatuu.
 
 
 
