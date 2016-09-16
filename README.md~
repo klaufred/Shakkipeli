@@ -7,7 +7,7 @@
 
 [aiheen kuvaus](Shakkipeli/dokumentaatiohakemisto/aiheenKuvausJaRakenne.md) 
 
-[tuntikirjanpito](Shakkipeli/dokumentaatiohakemisto/tuntikirjanpito.md)
+[tuntikirjanpito](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/Class_diagram.png)
 
 
 
