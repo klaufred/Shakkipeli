@@ -1,1 +1,1 @@
-![Alt text](dokumentaatiohakemisto/Class_Diagram.png)
+![Alt text](dokumentaatiohakemisto/Class_diagram.png)
