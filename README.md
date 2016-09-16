@@ -5,9 +5,11 @@
 
 ### Shakkipeli, jossa kaksi ihmistä pelaavat normaalia shakkia toinen mustilla ja toinen valkoisilla.
 
-[aiheen kuvaus](Shakkipeli/dokumentaatiohakemisto/aiheenKuvausJaRakenne.md) 
+[luokkakaavio](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/aiheenKuvausJaRakenne.md) 
 
-[tuntikirjanpito](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/Class_diagram.png)
+[aihemäärittely](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/Aihem%C3%A4%C3%A4rittely.md)
+
+[tuntikirjanpito](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/Tuntikirjanpito.md)
 
 
 
