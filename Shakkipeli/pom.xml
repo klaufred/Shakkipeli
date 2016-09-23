@@ -54,10 +54,16 @@
                     <targetClasses>
                         <param>game.ChessGame</param>
                         <param>game.Player</param>
+                        <param>game.Spot</param>
+                        <param>game.ChessPiece</param>
+                        <param>game.Board</param>
                     </targetClasses>
                     <targetTests>
                         <param>game.ChessGame</param>
                         <param>game.Player</param>
+                        <param>game.Spot</param>
+                        <param>game.ChessPiece</param>
+                        <param>game.Board</param>
                     </targetTests>
                 </configuration>
             </plugin>
