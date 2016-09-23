@@ -1,7 +1,7 @@
 package game;
 
 
-public class ChessPiece {
+public abstract class ChessPiece {
 
     private int x;
     private int y;
