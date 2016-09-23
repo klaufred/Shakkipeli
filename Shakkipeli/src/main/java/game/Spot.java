@@ -17,7 +17,7 @@ public class Spot {
         return this.x;
     }
     
-    public int  getY(){
+    public int  getY() {
         return this.y;
     }
     

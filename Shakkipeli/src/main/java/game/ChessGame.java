@@ -29,7 +29,7 @@ public class ChessGame {
     }
     
     public void moveWhite(String from, String to) {
-        if (this.board.validMove(from,to, this.white) == true) {
+        if (this.board.validMove(from, to, this.white) == true) {
             this.board.move(from, to, this.white);
             this.white.endOfTurn();
             this.black.makeReady();
@@ -37,7 +37,7 @@ public class ChessGame {
     }
     
     public void moveBlack(String from, String to) {
-        if (this.board.validMove(from,to, this.black) == true) {
+        if (this.board.validMove(from, to, this.black) == true) {
             this.board.move(from, to, this.black);
             this.black.endOfTurn();
             this.white.makeReady();
@@ -47,13 +47,14 @@ public class ChessGame {
     public String askWhereFrom() {
         String from;
         
-        while(true) {
-           System.out.println("What piece would you like to move?");
-           from = this.reader.nextLine(); 
+        while (true) {
+            
+            System.out.println("What piece would you like to move?");
+            from = this.reader.nextLine(); 
            
-           if(check(from)) {
-               break;
-           }
+            if (check(from)) {
+                break;
+            }
         }
         
         return from;
@@ -62,20 +63,20 @@ public class ChessGame {
     public String askWhereTo() {
         String to;
         
-        while(true) {
-           System.out.println("And where to?");
-           to = this.reader.nextLine(); 
+        while (true) {
+            System.out.println("And where to?");
+            to = this.reader.nextLine(); 
            
-           if(check(to)) {
-               break;
-           }
+            if (check(to)) {
+                break;
+            }
         }
         
         return to;
     }
     
     public boolean check(String command) {
-        if(command.isEmpty() || command.equals("quit")|| command.equals("a1")
+        if (command.isEmpty() || command.equals("quit") || command.equals("a1")
                 || command.equals("a2") || command.equals("a3") 
                 || command.equals("a4") || command.equals("a5")
                 || command.equals("a6") || command.equals("a7")
@@ -108,8 +109,8 @@ public class ChessGame {
                 || command.equals("h4") || command.equals("h5")
                 || command.equals("h6") || command.equals("h7")
                 || command.equals("h8")) {
-             return true;
-           } else {
+            return true;
+        } else {
             return false;
         }
     }
@@ -144,7 +145,7 @@ public class ChessGame {
                 moveBlack(from, to);
             }
             
-            if(this.board.gameOver() == false){
+            if (this.board.gameOver() == false) {
                 gameStatus = false;
             }
             break;
@@ -153,8 +154,8 @@ public class ChessGame {
     }
     
     public void runGame() {
-        this.white.GameSetUp();
-        this.black.GameSetUp();
+        this.white.gameSetUp();
+        this.black.gameSetUp();
         System.out.println("To move a piece, write where is the piece that you "
                 + "would like to move and where you would like to move it");
         System.out.println("For example: if you want to move a piece from a4 "
@@ -165,9 +166,9 @@ public class ChessGame {
         this.white.makeReady();
         boolean gameOn;
         
-        while(true) {
+        while (true) {
             gameOn = turn();
-            if(gameOn == false) {
+            if (gameOn == false) {
                 break;
             }
             System.out.println("next turn:");

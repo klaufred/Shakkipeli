@@ -22,7 +22,7 @@ public class Player {
         return this.pieces;
     }
 
-    public void GameSetUp() {
+    public void gameSetUp() {
         if ("white".equals(this.side)) {
             for (int x = 0; x < 8; x++) {
                 this.pieces.add(new Pawn(x, 1));

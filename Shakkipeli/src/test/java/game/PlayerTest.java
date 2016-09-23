@@ -38,7 +38,7 @@ public class PlayerTest {
 
     @Test
     public void piecesSetUp() {
-        black.GameSetUp();
+        black.gameSetUp();
         assertTrue(black.getPieces() != null);
     }
 
