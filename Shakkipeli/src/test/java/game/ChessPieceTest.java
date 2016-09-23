@@ -1,5 +1,5 @@
 
-package gametests;
+package game;
 
 import game.ChessPiece;
 import org.junit.After;

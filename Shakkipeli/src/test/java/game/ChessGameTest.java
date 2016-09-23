@@ -1,5 +1,6 @@
-package gametests;
+package game;
 
+import game.King;
 import game.Board;
 import game.ChessGame;
 import game.Player;

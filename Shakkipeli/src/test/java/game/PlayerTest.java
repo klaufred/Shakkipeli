@@ -1,4 +1,4 @@
-package gametests;
+package game;
 
 import game.Bishop;
 import game.ChessGame;
