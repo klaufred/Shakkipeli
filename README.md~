@@ -11,5 +11,7 @@
 
 [tuntikirjanpito](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/Tuntikirjanpito.md)
 
+[CheckStyle](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/checkstyle.html)
 
+[Pit-raportti](https://github.com/klaufred/Shakkipeli/blob/master/dokumentaatiohakemisto/index.html)
 
