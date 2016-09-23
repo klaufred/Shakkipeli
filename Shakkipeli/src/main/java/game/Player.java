@@ -6,10 +6,12 @@ public class Player {
 
     private String side;
     private ArrayList<ChessPiece> pieces;
+    private boolean ready;
 
     public Player(String side) {
         this.side = side;
         this.pieces = new ArrayList<ChessPiece>();
+        this.ready = false;
     }
 
     public String getSide() {
@@ -49,6 +51,18 @@ public class Player {
             this.pieces.add(new Knight(2, 7));
             this.pieces.add(new Knight(6, 7));
         }
+    }
+
+    public void makeReady() {
+        this.ready = true;
+    }
+
+    public void endOfTurn() {
+        this.ready = false;
+    }
+
+    public boolean isReady() {
+        return this.ready;
     }
 
 }

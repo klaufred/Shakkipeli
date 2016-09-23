@@ -5,10 +5,12 @@ public abstract class ChessPiece {
 
     private int x;
     private int y;
+    private boolean existence;
 
     public ChessPiece(int x, int y) {
         this.x = x;
         this.y = y;
+        this.existence = true;
     }
 
     public int getX() {
@@ -27,4 +29,7 @@ public abstract class ChessPiece {
         this.y = y;
     }
 
+    public void removePiece() {
+        this.existence = false;
+    }
 }
