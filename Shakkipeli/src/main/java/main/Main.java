@@ -1,5 +1,6 @@
-package game;
+package main;
 
+import ui.ChessGame;
 import java.util.Scanner;
 
 public class Main {

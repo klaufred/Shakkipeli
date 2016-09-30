@@ -1,6 +1,12 @@
-package game;
+package logics;
 
+import domain.Spot;
 
+/**
+ * This class works as an abstract class for the pieces. 
+ * It has x and y coordinates and is placed the board in a spot.
+ * 
+ */
 public abstract class ChessPiece {
 
     private int x;
@@ -31,5 +37,16 @@ public abstract class ChessPiece {
 
     public void removePiece() {
         this.existence = false;
+    }
+    
+    public String getId() {
+        return null;
+    }
+
+    public boolean checkMove(Spot spot) {
+        return false;
+    }
+
+    public void move(Spot findSpot) {
     }
 }

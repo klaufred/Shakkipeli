@@ -52,18 +52,29 @@
                 <version>1.1.8</version>
                 <configuration>
                     <targetClasses>
-                        <param>game.ChessGame</param>
-                        <param>game.Player</param>
-                        <param>game.Spot</param>
-                        <param>game.ChessPiece</param>
-                        <param>game.Board</param>
+                        <param>ui</param>
+                        <param>domain.Spot</param>
+                        <param>logics.ChessPiece</param>
+                        <param>domain.Board</param>
+                        <param>logics.Pawn</param>
+                        <param>logics.Bishop</param>
+                        <param>logics.Rook</param>
+                        <param>logics.King</param>
+                        <param>logics.Queen</param>
+                        <param>logics.Knight</param>
+
                     </targetClasses>
                     <targetTests>
-                        <param>game.ChessGame</param>
-                        <param>game.Player</param>
-                        <param>game.Spot</param>
-                        <param>game.ChessPiece</param>
-                        <param>game.Board</param>
+                        <param>ui.ChessGame</param>
+                        <param>domain.Spot</param>
+                        <param>logics.ChessPiece</param>
+                        <param>domain.Board</param>
+                        <param>logics.Pawn</param>
+                        <param>logics.Bishop</param>
+                        <param>logics.Rook</param>
+                        <param>logics.King</param>
+                        <param>logics.Queen</param>
+                        <param>logics.Knight</param>
                     </targetTests>
                 </configuration>
             </plugin>

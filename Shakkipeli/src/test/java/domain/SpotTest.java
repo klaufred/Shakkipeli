@@ -1,8 +1,8 @@
 
-package game;
+package domain;
 
-import game.Pawn;
-import game.Spot;
+import logics.Pawn;
+import domain.Spot;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

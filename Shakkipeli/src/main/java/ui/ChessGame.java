@@ -1,27 +1,29 @@
-package game;
+package ui;
 
+import domain.Board;
 import java.util.Scanner;
+import logics.GameLogic;
+/**
+ * This class will work as the interface class. It will read the players 
+ * commands and inform the logic to do them, if they are appropriate. It 
+ * creates the logic and the board. 
+ */
 
 public class ChessGame {
 
     private Board board;
-    private Player black;
-    private Player white;
+    private boolean black;
+    private boolean white;
     private Scanner reader;
+    private GameLogic logic;
 
     public ChessGame() {
-        this.black = new Player("black");
-        this.white = new Player("white");
+        this.black = false;
+        this.white = false;
         this.board = new Board();
         this.reader = new Scanner(System.in);
-    }
-
-    public Player getBlack() {
-        return this.black;
-    }
-
-    public Player getWhite() {
-        return this.white;
+        this.logic = new GameLogic(this.board);
+        this.board.setPieces();
     }
 
     public Board getBoard() {
@@ -29,18 +31,18 @@ public class ChessGame {
     }
     
     public void moveWhite(String from, String to) {
-        if (this.board.validMove(from, to, this.white) == true) {
-            this.board.move(from, to, this.white);
-            this.white.endOfTurn();
-            this.black.makeReady();
+        if (this.logic.validMove(from, to) == true) {
+            this.logic.move(from, to);
+            this.white = false;
+            this.black = true;
         } 
     }
     
     public void moveBlack(String from, String to) {
-        if (this.board.validMove(from, to, this.black) == true) {
-            this.board.move(from, to, this.black);
-            this.black.endOfTurn();
-            this.white.makeReady();
+        if (this.logic.validMove(from, to) == true) {
+            this.logic.move(from, to);
+            this.black = false;
+            this.white = true;
         } 
     }
     
@@ -137,11 +139,11 @@ public class ChessGame {
                 break;
             }
             
-            if (this.white.isReady()) {
+            if (this.white = true) {
                 moveWhite(from, to);
             }
             
-            if (this.black.isReady()) {
+            if (this.black = true) {
                 moveBlack(from, to);
             }
             
@@ -154,8 +156,6 @@ public class ChessGame {
     }
     
     public void runGame() {
-        this.white.gameSetUp();
-        this.black.gameSetUp();
         System.out.println("To move a piece, write where is the piece that you "
                 + "would like to move and where you would like to move it");
         System.out.println("For example: if you want to move a piece from a4 "
@@ -163,7 +163,7 @@ public class ChessGame {
                 + "when asked where to move it");
         System.out.println("Write 'quit' to end the game");
         System.out.println("White player begins");
-        this.white.makeReady();
+        this.white = true;
         boolean gameOn;
         
         while (true) {

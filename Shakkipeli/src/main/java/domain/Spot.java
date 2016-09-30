@@ -1,5 +1,10 @@
-package game;
+package domain;
 
+import logics.ChessPiece;
+ /**
+ * Class works as an Spot on the board. 
+ * It has x and y coordinates and can contain a single chesspiece. 
+ */
 
 public class Spot {
 
