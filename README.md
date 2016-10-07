@@ -1,6 +1,8 @@
 
 # Shakkipeli
 
+# CheckStyle ei toimi muokkausten jälkeen!!!!
+
 ## Dokumentaatio
 
 ### Shakkipeli, jossa kaksi ihmistä pelaavat normaalia shakkia toinen mustilla ja toinen valkoisilla.
