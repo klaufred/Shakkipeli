@@ -2,9 +2,13 @@
 package shakkipeli.ui;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import shakkipeli.domain.Spot;
 import shakkipeli.logic.ChessPiece;
 import shakkipeli.logic.GameLogic;
 
+/**
+* This class records and uses to the mouse movements.
+*/
 public class Mouselistener implements MouseListener {
     private GameLogic logic;
     private ChessPiece piece;
@@ -24,8 +28,9 @@ public class Mouselistener implements MouseListener {
             this.piece = this.logic.findPiece(x, y);
             choosePiece = true;
         } else {
-            if (this.piece.checkMove(this.logic.findSpot(x, y), this.logic.getBoard()))  {
-                this.piece.move(this.logic.findSpot(x, y), this.logic.getBoard());
+            Spot spot = this.logic.findSpot(x, y);
+            if (this.piece.checkMove(spot, this.logic.getBoard()))  {
+                this.piece.move(spot, this.logic.getBoard());
                 choosePiece = false; 
             }
         }

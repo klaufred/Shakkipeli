@@ -30,10 +30,19 @@ public class Spot {
         return this.piece;
     }
     
+    /**
+    * This method adds an ChessPiece to the Spot, meaning that the piece is on the Spot.
+    * @param piece the piece that is wanted on the Spot
+    */
     public void occupySpot(ChessPiece piece) {
         this.piece = piece;
     }
     
+    /**
+    * This method checks if the Spot has an Piece on it.
+    * 
+    * @return boolean true if there is no piece on the Spot, false if there is.
+    */
     public boolean checkSpot() {
         return this.piece == null;
     }

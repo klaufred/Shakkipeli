@@ -12,6 +12,9 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import shakkipeli.logic.ChessPiece;
 import shakkipeli.logic.GameLogic;
+/**
+* Connects the pieces to their pictures and draws them and the board.
+*/
 
 public class Drawboard extends JPanel {
     private File blackKing;
@@ -51,6 +54,9 @@ public class Drawboard extends JPanel {
         
     }
     
+    /**
+    * Draws the board for the game. Determines the colour and size of the Spots.
+    */
     public void drawBoard(Graphics g) {
         for (int y = 0; y <= 7; y++) {
             for (int x = 0; x <= 7; x++) {
@@ -72,6 +78,10 @@ public class Drawboard extends JPanel {
         drawChessPieces(g);
         repaint();
     }
+    
+    /**
+    * Draws the pieces based on the ChessPiece's class.
+    */
 
     private void drawChessPieces(Graphics g) {
         for (ChessPiece piece : this.logic.getList()) {
@@ -87,7 +97,12 @@ public class Drawboard extends JPanel {
         }
         repaint();
     }
-    
+    /**
+    * Connects the ChessPiece with it's picture in it's File.
+    * @param   piece   ChessPiece which needs to be connected to it's File (picture).
+    * 
+    * @return File of the piece given as the parameter.
+    */
     public File getPiecePicture(ChessPiece piece) {
         if (piece.getColor() == "White" && piece.getId() == "Pawn") {
             return this.whitePawn;

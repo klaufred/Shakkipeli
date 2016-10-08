@@ -8,7 +8,9 @@ import java.util.ArrayList;
  * This class extends the class ChessPiece class. 
  * It has x and y coordinates and is placed the board in a spot.
  * It in addition it also has an id and will check if it can move to the 
- * wanted spot. It will also move to the spot if capable.
+ * wanted spot.Knights can move by hopping over other pieces in an L-formation.
+ * It also has the validMoves list,which contains all the valid moves that the 
+ * piece can make.
  */
 
 public class Knight extends ChessPiece {
@@ -25,6 +27,16 @@ public class Knight extends ChessPiece {
         return this.id;
     }
      
+    /**
+    * This method checks if the piece is capable of making the wanted move. It 
+    * calls the update-method at the beginning to update the validMoves list.
+    * It then checks the given Spot to see if it is in the list of valid moves.
+    * @param spot The Spot that the piece is commanded to check.
+    * @param board The Board of the game used for the checking.
+    * 
+    * @return boolean true if the move is valid, false if it is not.
+    */
+     
     @Override
     public boolean checkMove(Spot spot, Board board) {
         this.update(board);
@@ -33,6 +45,15 @@ public class Knight extends ChessPiece {
         }
         return false;
     }
+    
+    /**
+    * This method updates the validMoves -list,  with all the moves that the 
+    * piece can make in that turn. It also calls the knightsMoves-method that is 
+    * given the colour of the piece.
+    * 
+     * @param board is the games board needed for the other methods that are 
+     * called. 
+    */
     
     @Override
     public void update(Board board) { 
@@ -46,6 +67,14 @@ public class Knight extends ChessPiece {
             knightsMoves(board, "White");
         } 
     }
+    
+    /**
+    * This method adds the possible moves of the Knight into the validMoves -list
+    * The Knight move by hopping from one spot to another in an L-formation.
+    * 
+    * @param board of the game need to check the moves.
+    * @param color of the piece to identify the enemies.
+    */
     
     public void knightsMoves(Board board, String color) {
         if (board.getSpot(this.getX() - 2, this.getY() + 1).checkSpot()) {

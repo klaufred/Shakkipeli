@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /**
  * This class works as an abstract class for the pieces. 
  * It has x and y coordinates and is placed the board in a spot.
+ * It moves itself on the board.
  * 
  */
 public abstract class ChessPiece {
@@ -52,6 +53,13 @@ public abstract class ChessPiece {
         return false;
     }
 
+    /**
+    * This method moves the piece on the board to occupy a spot.
+    * 
+    * @param spot were the piece is going to move.
+    * @param board of the game need to check the moves.
+    */
+    
     public void move(Spot spot, Board board) {
         this.setX(spot.getX());
         this.setY(spot.getY());

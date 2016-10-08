@@ -8,7 +8,8 @@ import java.util.ArrayList;
  * This class extends the class ChessPiece class. 
  * It has x and y coordinates and is placed the board in a spot.
  * It in addition it also has an id and will check if it can move to the 
- * wanted spot. It will also move to the spot if capable.
+ * wanted spot. Pawns can only move forward.It also has the validMoves list,
+ * which contains all the valid moves that the piece can make.
  */
 
 public class Pawn extends ChessPiece {
@@ -30,6 +31,17 @@ public class Pawn extends ChessPiece {
         return this.id;
     }
      
+    /**
+    * This method checks if the piece is capable of making the wanted move. It 
+    * calls the update-method at the beginning to update the validMoves list.
+    * It then checks the given Spot to see if it is in the list of valid moves.
+    * The pawn also has the firstMoves-list to check.
+    * @param spot The Spot that the piece is commanded to check.
+    * @param board The Board of the game used for the checking.
+    * 
+    * @return boolean true if the move is valid, false if it is not.
+    */
+     
     @Override
     public boolean checkMove(Spot spot, Board board) {
         this.update(board);
@@ -40,6 +52,15 @@ public class Pawn extends ChessPiece {
         }
         return false;
     }
+    
+    /**
+    * This method updates the firstValidMoves -list,  with all the moves that the 
+    * piece can make in that turn. This specific to the Pawn that can only move
+    * twice at the beginning.
+    * 
+    * @param board is the games board needed for the other methods that are 
+    * called. 
+    */
     
     public void updateFirstMove(Board board) {
         if (this.getColor().equals("White")) { 
@@ -86,6 +107,15 @@ public class Pawn extends ChessPiece {
             }
         }
     }
+    
+    /**
+    * This method updates the validMoves -list,  with all the moves that the 
+    * piece can make in that turn. 
+    * 
+    * @param board is the games board needed for the other methods that are 
+    * called. 
+    */
+    
     @Override
     public void update(Board board) {
         if (this.firstMove) {
@@ -129,15 +159,5 @@ public class Pawn extends ChessPiece {
                 }
             }
         } 
-    }
-    
-    
-    @Override
-    public void move(Spot spot, Board board) {
-        this.setX(spot.getX());
-        this.setY(spot.getY());
-        spot.occupySpot(this);
-        
-        this.firstMove = false;
     }
 }

@@ -6,7 +6,7 @@ import shakkipeli.logic.GameLogic;
 /**
  * This class was working as the interface class. It read the players 
  * commands and informed the logic to do them, if they are appropriate. It 
- * created the logic and the board. The former UI
+ * created the logic and the board. This is the former text based UI. Not relevant anymore.
  */
 
 public class ChessGame {
@@ -29,7 +29,7 @@ public class ChessGame {
     public Board getBoard() {
         return this.board;
     }
-    
+    /*
     public void moveWhite(String from, String to) {
         if (this.logic.validMove(from, to) == true) {
             this.logic.move(from, to);
@@ -37,7 +37,8 @@ public class ChessGame {
             this.black = true;
         } 
     }
-    
+    */
+    /*
     public void moveBlack(String from, String to) {
         if (this.logic.validMove(from, to) == true) {
             this.logic.move(from, to);
@@ -45,7 +46,7 @@ public class ChessGame {
             this.white = true;
         } 
     }
-    
+    */
     public String askWhereFrom() {
         String from;
         
@@ -138,15 +139,16 @@ public class ChessGame {
                 gameStatus = false;
                 break;
             }
-            
+            /*
             if (this.white = true) {
                 moveWhite(from, to);
             }
-            
+            */
+                    /*
             if (this.black = true) {
                 moveBlack(from, to);
             }
-            
+            */
             if (this.board.gameOver() == false) {
                 gameStatus = false;
             }

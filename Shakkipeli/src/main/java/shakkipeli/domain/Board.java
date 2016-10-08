@@ -12,7 +12,7 @@ import shakkipeli.logic.Pawn;
 /**
  * This is the board. It has 36 spots which contain the pieces. Every move is
  * made on it and it sets the pieces on their starting spots. it also informs to
- * Gamelogic when one of the Kings has fallen.
+ * Gamelogic-class when one of the Kings has fallen.
  *
  */
 public class Board {
@@ -20,6 +20,10 @@ public class Board {
     private Spot[][] spots;
     private boolean gameStatus;
 
+ /**
+ * This method creates the board out of Spots. The Board is essentially Spot[][]
+ * this.spots- attribute.
+ */
     public Board() {
         this.gameStatus = true;
         this.spots = new Spot[8][8];
@@ -35,6 +39,11 @@ public class Board {
         return this.spots[x][y];
     }
 
+    /**
+    * This method creates and puts the ChessPiece- class pieces on the Spot[][]
+    * -formed board. 
+    */
+    
     public void setPieces() {
         for (int x = 0; x < 8; x++) {
             this.spots[x][1].occupySpot(new Pawn(x, 1, "White"));
@@ -63,10 +72,18 @@ public class Board {
         this.spots[6][7].occupySpot(new Knight(6, 7, "Black"));
     }
 
+    /**
+    * This method checks if the game is over.
+    * 
+    * @return  a boolean true if the game is still going false if it is over.
+    */
     public boolean gameOver() {
         return this.gameStatus;
     }
 
+    /**
+    * This method will change the gameStatus, meaning that the game is over.
+    */
     public void checkMate() {
         this.gameStatus = false;
     }
@@ -79,6 +96,10 @@ public class Board {
         return this.spots;
     }
 
+    /**
+    * This method creates an ArrayList of the pieces and returns it.
+    * @return the said ArrayList of 'ChessPieces.
+    */
     public ArrayList<ChessPiece> getPieceList() {
         ArrayList<ChessPiece> pieceList = new ArrayList<ChessPiece>();
         for (int x = 0; x < this.spots.length; x++) {
