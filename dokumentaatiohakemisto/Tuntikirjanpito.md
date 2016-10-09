@@ -7,3 +7,4 @@ Päivä | Tunnit | Kuvaus
 30.09.2016 | 5h | Logiikan tekoa
 6.10.2016 | 5h | logiikan tekoa, käyttöliitymän aloittelua
 7.10.2016 | 9h | Logiikan rakentamista, Käyttöliitymän rakentamista, Pit-ongelmien korjaamista
+9.10.2016 | 4h | Käyttöliittymän korjausta, demoesitykseen valmistautumista, koodikatselmoinnissa näytettyjen ongelmien korjausta.
