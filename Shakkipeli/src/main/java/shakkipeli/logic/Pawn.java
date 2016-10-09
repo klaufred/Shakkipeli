@@ -18,7 +18,13 @@ public class Pawn extends ChessPiece {
     private boolean firstMove;
     private ArrayList<Spot> validMoves;
     private ArrayList<Spot> firstValidMoves;
-
+    
+/**
+    * This method creates the Pawn.
+     * @param x the pieces given x coordinate.
+     * @param y the pieces given y coordinate.
+     * @param color the given colour of the Piece(white or black).
+    */
     public Pawn(int x, int y, String color) {
         super(x, y, color);
         this.firstMove = true;
@@ -44,8 +50,10 @@ public class Pawn extends ChessPiece {
      
     @Override
     public boolean checkMove(Spot spot, Board board) {
+        this.updateFirstMove(board);
         this.update(board);
         if (this.firstMove && this.firstValidMoves.contains(spot)) {
+            this.firstMove = false;
             return true;
         } else if (this.firstMove == false && this.validMoves.contains(spot)) {
             return true;
@@ -66,15 +74,15 @@ public class Pawn extends ChessPiece {
         if (this.getColor().equals("White")) { 
             if (board.getSpot(this.getX(), this.getY() + 1).checkSpot()) {
                 this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() + 1));
+                if (board.getSpot(this.getX(), this.getY() + 2).checkSpot()) {
+                    this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() + 2));
+                }
             }
-            
-            if (board.getSpot(this.getX(), this.getY() + 2).checkSpot()) {
-                this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() + 2));
-            }
-            
+
             if (board.getSpot(this.getX() + 1, this.getY() + 1).checkSpot() == false) {
                 if (board.getSpot(this.getX() + 1, this.getY() + 1).getPiece().getColor().equals("Black")) {
                     this.firstValidMoves.add(board.getSpot(this.getX() + 1, this.getY() + 1));
+                    
                 }
             }
             
@@ -88,11 +96,12 @@ public class Pawn extends ChessPiece {
         if (this.getColor().equals("Black")) {
             if (board.getSpot(this.getX(), this.getY() - 1).checkSpot()) {
                 this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() - 1));
+                if (board.getSpot(this.getX(), this.getY() - 2).checkSpot()) {
+                    this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() - 2));
+                }
             }
             
-            if (board.getSpot(this.getX(), this.getY() - 2).checkSpot()) {
-                this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() - 2));
-            }
+            
             
             if (board.getSpot(this.getX() + 1, this.getY() - 1).checkSpot() == false) {
                 if (board.getSpot(this.getX() + 1, this.getY() - 1).getPiece().getColor().equals("White")) {
@@ -143,7 +152,7 @@ public class Pawn extends ChessPiece {
         }
         
         if (this.getColor().equals("Black")) {
-            if (board.getSpot(this.getX(), this.getY() + 1).checkSpot()) {
+            if (board.getSpot(this.getX(), this.getY() - 1).checkSpot()) {
                 this.validMoves.add(board.getSpot(this.getX(), this.getY() - 1));
             }
             

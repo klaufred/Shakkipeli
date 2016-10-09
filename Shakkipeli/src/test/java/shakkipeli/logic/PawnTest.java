@@ -4,10 +4,7 @@ package shakkipeli.logic;
 import shakkipeli.domain.Board;
 import shakkipeli.logic.ChessPiece;
 import shakkipeli.logic.Pawn;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -52,7 +49,7 @@ public class PawnTest {
     
     @Test 
     public void takingOverWorks() {
-        this.board.getSpot(4, 3).occupySpot(new Pawn(4, 3, "Black"));
+        this.board.getSpot(4, 3).occupySpot(new Bishop(4, 3, "Black"));
         this.pawn.update(this.board);
         if(this.pawn.checkMove(this.board.getSpot(5, 2), board)) {
             this.pawn.move(this.board.getSpot(5, 2), board);

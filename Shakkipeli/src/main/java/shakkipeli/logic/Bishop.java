@@ -15,7 +15,13 @@ import java.util.ArrayList;
 public class Bishop extends ChessPiece {
     private String id = "Bishop";
     private ArrayList<Spot> validMoves;
-
+    
+    /**
+    * This method creates the Bishop.
+     * @param x the pieces given x coordinate.
+     * @param y the pieces given y coordinate.
+     * @param color the given colour of the Piece(white or black).
+    */
     public Bishop(int x, int y, String color) {
         super(x, y, color);
         this.validMoves = new ArrayList<>();

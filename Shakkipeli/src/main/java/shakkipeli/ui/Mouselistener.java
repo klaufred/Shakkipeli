@@ -14,6 +14,10 @@ public class Mouselistener implements MouseListener {
     private ChessPiece piece;
     private boolean choosePiece;
     
+    /**
+    * This method creates the class. It gives the choosePiece a false boolean. 
+    * @param logic given to the class for moving the pieces.
+    */
     public Mouselistener(GameLogic logic) {
         this.logic = logic;
         this.choosePiece = false;

@@ -35,6 +35,13 @@ public class Board {
         }
     }
 
+    /**
+    * This method returns the Spot that correlates with the given coordinates.
+     * @param x the x coordinates of the wanted spot.
+     * @param y the y coordinates for the wanted spot.
+     * @return Spot that is in the wanted coordinates
+    */
+    
     public Spot getSpot(int x, int y) {
         return this.spots[x][y];
     }
@@ -50,7 +57,7 @@ public class Board {
         }
 
         this.spots[4][0].occupySpot(new King(4, 0, "White"));
-        this.spots[3][0].occupySpot(new Queen(3, 0, "White"));
+        this.spots[3][3].occupySpot(new Queen(3, 3, "White"));
         this.spots[0][0].occupySpot(new Rook(0, 0, "White"));
         this.spots[7][0].occupySpot(new Rook(7, 0, "White"));
         this.spots[2][0].occupySpot(new Bishop(2, 0, "White"));
@@ -83,11 +90,18 @@ public class Board {
 
     /**
     * This method will change the gameStatus, meaning that the game is over.
+    * 
     */
     public void checkMate() {
         this.gameStatus = false;
     }
 
+    /**
+    * This method returns the piece in the coordinates.
+    * @param x the pieces given x coordinate.
+    * @param y the pieces given y coordinate.
+    * @return ChessPiece assigned to the coordinates.
+    */
     public ChessPiece getPiece(int x, int y) {
         return this.spots[x][y].getPiece();
     }

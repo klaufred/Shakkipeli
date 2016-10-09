@@ -3,7 +3,6 @@ package shakkipeli.logic;
 import shakkipeli.domain.Board;
 import shakkipeli.domain.Spot;
 import java.util.ArrayList;
-
 /**
  * This class extends the class ChessPiece class. 
  * It has x and y coordinates and is placed the board in a spot.
@@ -11,12 +10,16 @@ import java.util.ArrayList;
  * wanted spot. The Queen can has the bishop's and the rook's moves. It also has
  * validMoves-list, which contains the valid moves of the time.
  */
-
 public class Queen extends ChessPiece {
-    
     private String id = "Queen";
     private ArrayList<Spot> validMoves;
-
+    
+    /**
+    * This method creates the Queen.
+    * @param x the pieces given x coordinate.
+    * @param y the pieces given y coordinate.
+    * @param color the given colour of the Piece(white or black).
+    */
     public Queen(int x, int y, String color) {
         super(x, y, color);
         this.validMoves = new ArrayList<>();
@@ -33,7 +36,6 @@ public class Queen extends ChessPiece {
     * It then checks the given Spot to see if it is in the list of valid moves.
     * @param spot The Spot that the piece is commanded to check.
     * @param board The Board of the game used for the checking.
-    * 
     * @return boolean true if the move is valid, false if it is not.
     */
     @Override
@@ -49,11 +51,9 @@ public class Queen extends ChessPiece {
     * This method updates the validMoves -list,  with all the moves that the 
     * piece can make in that turn. It also calls the queensMoves-method that is 
     * given the colour of the piece.
-    * 
     * @param board is the games board needed for the other methods that are 
     * called. 
     */
-    
     @Override
     public void update(Board board) { 
         this.validMoves.clear();
@@ -73,7 +73,6 @@ public class Queen extends ChessPiece {
     /**
     * This method adds the possible moves of the Queen into the validMoves -list.
     * The Queen has the moves of the rook and the bishop.
-    * 
     * @param board of the game need to check the moves.
     * @param color of the piece to identify the enemies.
     */

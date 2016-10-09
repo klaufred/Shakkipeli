@@ -12,11 +12,20 @@ import java.util.ArrayList;
 public class GameLogic {
     private Board board;
 
+    /**
+    * This method gives the logic the board and sets the pieces on it.
+    * @param board where the game is to be played.
+    */
     public GameLogic(Board board) {
         this.board = board;
         this.board.setPieces();
     }
     
+    /**
+    * This method return a list of all the pieces in the game.
+    * 
+    * @return  ArrayList of ChessPieces that exist in the game.
+    */
     public ArrayList<ChessPiece> getList() {
         return this.board.getPieceList();
     }

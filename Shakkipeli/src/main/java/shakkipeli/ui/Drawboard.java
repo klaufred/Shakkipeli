@@ -34,6 +34,11 @@ public class Drawboard extends JPanel {
     private BufferedImage image;
     private int sivu;
     
+    /**
+    * This method add the logic to the class and assigns the spots sides length.
+    * It also gives all the piece files their photos.
+    * @param logic for running the game.
+    */
     public Drawboard(GameLogic logic) {
         this.logic = logic;
         this.sivu = 60;
@@ -56,6 +61,7 @@ public class Drawboard extends JPanel {
     
     /**
     * Draws the board for the game. Determines the colour and size of the Spots.
+    * @param g as the graphics.
     */
     public void drawBoard(Graphics g) {
         for (int y = 0; y <= 7; y++) {

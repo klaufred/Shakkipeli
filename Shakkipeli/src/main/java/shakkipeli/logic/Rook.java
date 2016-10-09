@@ -17,6 +17,12 @@ public class Rook extends ChessPiece {
     private String id = "Rook";
     private ArrayList<Spot> validMoves;
 
+    /**
+    * This method creates the Rook.
+     * @param x the pieces given x coordinate.
+     * @param y the pieces given y coordinate.
+     * @param color the given colour of the Piece(white or black).
+    */
     public Rook(int x, int y, String color) {
         super(x, y, color);
         this.validMoves = new ArrayList<>();

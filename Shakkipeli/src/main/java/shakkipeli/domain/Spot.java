@@ -11,6 +11,12 @@ public class Spot {
     private int x;
     private int y;
     private ChessPiece piece;
+    
+    /**
+    * This method creates the Spot and gives it the x and y coordinates.
+     * @param x the x coordinate of the Spot.
+     * @param y the y coordinate of the Spot.
+    */
 
     public Spot(int x, int y) {
         this.x = x;
@@ -28,6 +34,13 @@ public class Spot {
     
     public ChessPiece getPiece() {
         return this.piece;
+    }
+    
+    /**
+    * This method empties the Spot from the ChessPiece.
+    */
+    public void emptySpot() {
+        this.piece = null;
     }
     
     /**

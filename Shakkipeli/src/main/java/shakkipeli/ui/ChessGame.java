@@ -8,7 +8,6 @@ import shakkipeli.logic.GameLogic;
  * commands and informed the logic to do them, if they are appropriate. It 
  * created the logic and the board. This is the former text based UI. Not relevant anymore.
  */
-
 public class ChessGame {
 
     private Board board;
@@ -16,7 +15,11 @@ public class ChessGame {
     private boolean white;
     private Scanner reader;
     private GameLogic logic;
-
+    
+    /**
+    * This method created the ChessGame. It made the board and the logic as well
+    * as the scanner and the set the players turn booleans to false.
+    */
     public ChessGame() {
         this.black = false;
         this.white = false;
@@ -38,6 +41,7 @@ public class ChessGame {
         } 
     }
     */
+    
     /*
     public void moveBlack(String from, String to) {
         if (this.logic.validMove(from, to) == true) {
@@ -47,25 +51,29 @@ public class ChessGame {
         } 
     }
     */
+    
+    /**
+    * This method asked where the piece was supposed to move from.
+     * @return String were the spot would be.
+    */
     public String askWhereFrom() {
         String from;
-        
         while (true) {
-            
             System.out.println("What piece would you like to move?");
             from = this.reader.nextLine(); 
-           
             if (check(from)) {
                 break;
             }
         }
-        
         return from;
     }
     
+    /**
+    * This method creates the asks where to move the piece.
+    @return String were you wanted it to be moved.
+    */
     public String askWhereTo() {
         String to;
-        
         while (true) {
             System.out.println("And where to?");
             to = this.reader.nextLine(); 
@@ -77,7 +85,11 @@ public class ChessGame {
         
         return to;
     }
-    
+    /**
+    * This method checks that the command it correct.
+     * @param command to be read.
+     * @return boolean whether it was a genuine command or false.
+    */
     public boolean check(String command) {
         if (command.isEmpty() || command.equals("quit") || command.equals("a1")
                 || command.equals("a2") || command.equals("a3") 
@@ -117,17 +129,22 @@ public class ChessGame {
             return false;
         }
     }
-    
+    /**
+    * This method checks if the command was quit.
+     * @param command checks if the String is quit.
+     * @return boolean false if it is quit.
+    */
     public boolean checkQuit(String command) {
         return !command.equals("quit");
     }
-
-    
+    /**
+    * This method acts as a game turn.
+    * @return boolean yes if the status is yes, if the game is still going on.
+    */
     public boolean turn() {
         boolean gameStatus = true;
         
         while (true) {
-            
             String from = askWhereFrom();
             if (checkQuit(from) == false) {
                 gameStatus = false;
@@ -144,7 +161,7 @@ public class ChessGame {
                 moveWhite(from, to);
             }
             */
-                    /*
+            /*
             if (this.black = true) {
                 moveBlack(from, to);
             }
@@ -157,6 +174,9 @@ public class ChessGame {
         return gameStatus;
     }
     
+    /**
+    * This method runs the text interface and makse the turns.
+    */
     public void runGame() {
         System.out.println("To move a piece, write where is the piece that you "
                 + "would like to move and where you would like to move it");
@@ -176,5 +196,4 @@ public class ChessGame {
             System.out.println("next turn:");
         }
     }
-
 }

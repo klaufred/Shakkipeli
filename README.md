@@ -1,7 +1,7 @@
 
 # Shakkipeli
 
-# CheckStyle ei toimi muokkausten jälkeen!!!!
+# CheckStylen sain toimimaan vasta koodinkatselmoinnin jälkeen. Kaksi versiota. Uusi ja vanha versio löytyvät dokumentaatiosta.
 
 ## Dokumentaatio
 

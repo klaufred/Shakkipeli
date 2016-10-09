@@ -16,6 +16,12 @@ public abstract class ChessPiece {
     private int y;
     private String color;
 
+    /**
+    * This method creates the ChessPiece.
+    * @param x the pieces given x coordinate.
+    * @param y the pieces given y coordinate.
+    * @param color the given colour of the Piece(white or black).
+    */
     public ChessPiece(int x, int y, String color) {
         this.x = x;
         this.y = y;
@@ -29,15 +35,29 @@ public abstract class ChessPiece {
     public int getY() {
         return this.y;
     }
-
+    
+/**
+    * This method sets the pieces x coordinate.
+    * @param x the x coordinate that should be set.
+    */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+    * This method sets the y coordinate.
+    * @param y the y coordinate to be set.
+    */
     public void setY(int y) {
         this.y = y;
     }
-    
+    /**
+    * This method updates the listed moves for the pieces. Does nothing for the 
+    * abstract class.
+    * 
+    * @param board is the games board needed for the other methods that are 
+    * called. 
+    */
     public void update(Board board) {
     }
     
@@ -49,6 +69,12 @@ public abstract class ChessPiece {
         return this.color;
     }
 
+    /**
+    * This method checks if the move is allowed on the board.
+     * @param spot where the move is to be made.
+     * @param board used to determine the validity.
+     * @return boolean true if it is.
+    */
     public boolean checkMove(Spot spot, Board board) {
         return false;
     }
@@ -61,6 +87,7 @@ public abstract class ChessPiece {
     */
     
     public void move(Spot spot, Board board) {
+        board.getSpot(this.getX(), this.getY()).emptySpot();
         this.setX(spot.getX());
         this.setY(spot.getY());
         spot.occupySpot(this);

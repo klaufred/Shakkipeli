@@ -20,6 +20,10 @@ public class UI implements Runnable {
     private int sivu;
     private Drawboard drawboard;
     
+    /**
+    * This method creates the UI. It makes a new board and a new logic. It also 
+    * determines the size of the spots side.
+    */
     public UI() {
         this.board = new Board();
         this.logic = new GameLogic(this.board);
@@ -50,7 +54,8 @@ public class UI implements Runnable {
     }
 
     /**
-    * Makes the drawingboard for the run()-method.
+    * Makes the drawing board for the run()-method.
+    * @param container to add the drawing board to.
     */
     
     public void addDrawboard(Container container) {

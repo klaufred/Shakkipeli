@@ -17,6 +17,12 @@ public class King extends ChessPiece {
     private String id = "King";
     private ArrayList<Spot> validMoves;
 
+    /**
+    * This method creates the King.
+     * @param x the pieces given x coordinate.
+     * @param y the pieces given y coordinate.
+     * @param color the given colour of the Piece(white or black).
+    */
     public King(int x, int y, String color) {
         super(x, y, color);
         this.validMoves = new ArrayList<>();
