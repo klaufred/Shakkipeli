@@ -81,7 +81,11 @@ public class Drawboard extends JPanel {
         super.paintComponent(g);
 
         drawBoard(g);
-        drawChessPieces(g);
+        try {
+            drawChessPieces(g);
+        } catch (IOException ex) {
+            Logger.getLogger(Drawboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         repaint();
     }
     
@@ -89,12 +93,12 @@ public class Drawboard extends JPanel {
     * Draws the pieces based on the ChessPiece's class.
     */
 
-    private void drawChessPieces(Graphics g) {
+    private void drawChessPieces(Graphics g) throws IOException{
         for (ChessPiece piece : this.logic.getList()) {
             try {
                 image = ImageIO.read(getPiecePicture(piece));
             } catch (IOException ex) {
-                Logger.getLogger(Drawboard.class.getName()).log(Level.CONFIG, null, ex);
+                Logger.getLogger(Drawboard.class.getName()).log(Level.SEVERE, null, ex);
             }
             int x = piece.getX();
             int y = piece.getY();

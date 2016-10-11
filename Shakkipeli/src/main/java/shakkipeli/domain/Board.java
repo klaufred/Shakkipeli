@@ -115,7 +115,7 @@ public class Board {
     * @return the said ArrayList of 'ChessPieces.
     */
     public ArrayList<ChessPiece> getPieceList() {
-        ArrayList<ChessPiece> pieceList = new ArrayList<ChessPiece>();
+        ArrayList<ChessPiece> pieceList = new ArrayList<>();
         for (int x = 0; x < this.spots.length; x++) {
             for (int y = 0; y < this.spots.length; y++) {
                 if (this.spots[x][y].getPiece() != null) {
