@@ -8,6 +8,7 @@
 - Pelaajat avaavat ohjelman.
 - He päättävät kumpi pelaa valkoisella ja kumpi mustalla.
 - Valkoinen aloittaa pelin ensimmäisellä siirrolla ja musta hänen jälkeensä.
+- Nappuloita liikutetaan valitsemalla ne hiirellä ja valitsemalla haluttu paikka.
 - Peli jatkuu kunnes toisen kuningas kaatuu tai tulee tasapeli.
 
 
