@@ -43,6 +43,78 @@ public class KingTest {
             this.king.move(this.board.getSpot(5, 5), board);
         }
         assertEquals(this.board.getPiece(5, 5).getId(), "King");
+    } 
+    
+    @Test 
+    public void moveWorks2() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(5, 5), board)) {
+            this.king.move(this.board.getSpot(5, 5), board);
+        }
+        assertEquals(this.board.getPiece(5, 5).getId(), "King");
+    }  
+    
+    @Test 
+    public void moveWorks3() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(5, 4), board)) {
+            this.king.move(this.board.getSpot(5, 4), board);
+        }
+        assertEquals(this.board.getPiece(5, 4).getId(), "King");
+    }  
+    
+    @Test 
+    public void moveWorks4() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(4, 5), board)) {
+            this.king.move(this.board.getSpot(4, 5), board);
+        }
+        assertEquals(this.board.getPiece(4, 5).getId(), "King");
+    }  
+    
+    @Test 
+    public void moveWorks5() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(3, 3), board)) {
+            this.king.move(this.board.getSpot(3, 3), board);
+        }
+        assertEquals(this.board.getPiece(3, 3).getId(), "King");
+    }  
+    
+    @Test 
+    public void moveWorks6() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(5, 3), board)) {
+            this.king.move(this.board.getSpot(5, 3), board);
+        }
+        assertEquals(this.board.getPiece(5, 3).getId(), "King");
+    }  
+    
+    @Test 
+    public void moveWorks7() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(3, 5), board)) {
+            this.king.move(this.board.getSpot(3, 5), board);
+        }
+        assertEquals(this.board.getPiece(3, 5).getId(), "King");
+    }  
+    
+    @Test 
+    public void moveWorks8() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(4, 3), board)) {
+            this.king.move(this.board.getSpot(4, 3), board);
+        }
+        assertEquals(this.board.getPiece(4, 3).getId(), "King");
+    }  
+    
+    @Test 
+    public void moveWorks9() {
+        this.king.update(this.board);
+        if(this.king.checkMove(this.board.getSpot(3, 4), board)) {
+            this.king.move(this.board.getSpot(3, 4), board);
+        }
+        assertEquals(this.board.getPiece(3, 4).getId(), "King");
     }  
     
     @Test 
@@ -54,4 +126,5 @@ public class KingTest {
         }
         assertEquals(this.board.getPiece(5, 5).getId(), "King");
     }
+    
 }

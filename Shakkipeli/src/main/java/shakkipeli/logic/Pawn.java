@@ -71,55 +71,32 @@ public class Pawn extends ChessPiece {
     */
     
     public void updateFirstMove(Board board) {
-        if (this.getColor().equals("White")) { 
-            if (board.getSpot(this.getX(), this.getY() + 1).checkSpot()) {
-                this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() + 1));
-                if (board.getSpot(this.getX(), this.getY() + 2).checkSpot()) {
-                    this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() + 2));
+        if (this.getColor().equals("White")) {
+            if (super.checkTheEdges(this.getX(), this.getY() + 1)) {
+                if (board.getSpot(this.getX(), this.getY() + 1).checkSpot()) {
+                    this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() + 1));
+                    addToFirstListIfNotOccupied(board, this.getX(), this.getY() + 2);
                 }
             }
-
-            if (board.getSpot(this.getX() + 1, this.getY() + 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() + 1, this.getY() + 1).getPiece().getColor().equals("Black")) {
-                    this.firstValidMoves.add(board.getSpot(this.getX() + 1, this.getY() + 1));
-                    
-                }
-            }
-            
-            if (board.getSpot(this.getX() - 1, this.getY() + 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() - 1, this.getY() + 1).getPiece().getColor().equals("Black")) {
-                    this.firstValidMoves.add(board.getSpot(this.getX() - 1, this.getY() + 1));
-                }
-            }
+            addToFirstListIfOccupied(board, "Black", this.getX() + 1, this.getY() + 1);
+            addToFirstListIfOccupied(board, "Black", this.getX() - 1, this.getY() + 1);
         }
         
         if (this.getColor().equals("Black")) {
-            if (board.getSpot(this.getX(), this.getY() - 1).checkSpot()) {
-                this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() - 1));
-                if (board.getSpot(this.getX(), this.getY() - 2).checkSpot()) {
-                    this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() - 2));
+            if (super.checkTheEdges(this.getX(), this.getY() - 1)) {
+                if (board.getSpot(this.getX(), this.getY() - 1).checkSpot()) {
+                    this.firstValidMoves.add(board.getSpot(this.getX(), this.getY() - 1));
+                    addToFirstListIfNotOccupied(board, this.getX(), this.getY() - 2);
                 }
             }
-            
-            
-            
-            if (board.getSpot(this.getX() + 1, this.getY() - 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() + 1, this.getY() - 1).getPiece().getColor().equals("White")) {
-                    this.firstValidMoves.add(board.getSpot(this.getX() + 1, this.getY() - 1));
-                }
-            }
-            
-            if (board.getSpot(this.getX() - 1, this.getY() - 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() - 1, this.getY() - 1).getPiece().getColor().equals("White")) {
-                    this.firstValidMoves.add(board.getSpot(this.getX() - 1, this.getY() - 1));
-                }
-            }
+            addToFirstListIfOccupied(board, "White", this.getX() + 1, this.getY() - 1);
+            addToFirstListIfOccupied(board, "White", this.getX() - 1, this.getY() - 1);
         }
     }
     
     /**
-    * This method updates the validMoves -list,  with all the moves that the 
-    * piece can make in that turn. 
+    * This method calls the methods that update the list. With all the moves that the 
+    * piece can make in that turn.
     * 
     * @param board is the games board needed for the other methods that are 
     * called. 
@@ -134,39 +111,77 @@ public class Pawn extends ChessPiece {
         this.validMoves.clear();
         
         if (this.getColor().equals("White")) {
-            if (board.getSpot(this.getX(), this.getY() + 1).checkSpot()) {
-                this.validMoves.add(board.getSpot(this.getX(), this.getY() + 1));
+            addToListIfNotOccupied(board, this.getX(), this.getY() + 1);
+            addToListIfOccupied(board, "Black", this.getX() + 1, this.getY() + 1);
+            addToListIfOccupied(board, "Black", this.getX() - 1, this.getY() + 1);
+        }
+        
+        if (this.getColor().equals("Black")) {         
+            addToListIfNotOccupied(board, this.getX(), this.getY() - 1);
+            addToListIfOccupied(board, "White", this.getX() + 1, this.getY() - 1);
+            addToListIfOccupied(board, "White", this.getX() - 1, this.getY() - 1);
+        } 
+    }
+    /**
+    * This method checks that the wanted coordinates are on the spot and the spot is empty
+    * and add the spot to the list of valid moves.
+    * @param board of the game find the Spot.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    */
+    public void addToListIfNotOccupied(Board board, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).checkSpot()) {
+                this.validMoves.add(board.getSpot(x, y));
             }
-            
-            if (board.getSpot(this.getX() + 1, this.getY() + 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() + 1, this.getY() + 1).getPiece().getColor().equals("Black")) {
-                    this.validMoves.add(board.getSpot(this.getX() + 1, this.getY() + 1));
-                }
-            }
-            
-            if (board.getSpot(this.getX() - 1, this.getY() + 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() - 1, this.getY() + 1).getPiece().getColor().equals("Black")) {
-                    this.validMoves.add(board.getSpot(this.getX() - 1, this.getY() + 1));
+        }
+    }
+    /**
+    * This method checks if the there is a similar colour piece on the spot and
+    * adds the spot to the list if there is not.
+    * @param board of the game to find the Spot
+    * @param color of the piece to identify the enemies.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    */
+    public void addToListIfOccupied(Board board, String color, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).checkSpot() == false) {
+                if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
+                    this.validMoves.add(board.getSpot(x, y));
                 }
             }
         }
-        
-        if (this.getColor().equals("Black")) {
-            if (board.getSpot(this.getX(), this.getY() - 1).checkSpot()) {
-                this.validMoves.add(board.getSpot(this.getX(), this.getY() - 1));
+    }
+    /**
+    * This method checks that the wanted coordinates are on the spot and the spot is empty
+    * and add the spot to the first moves list of valid moves.
+    * @param board of the game find the Spot.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    */
+    public void addToFirstListIfNotOccupied(Board board, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).checkSpot()) {
+                this.firstValidMoves.add(board.getSpot(x, y));
             }
-            
-            if (board.getSpot(this.getX() + 1, this.getY() - 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() + 1, this.getY() - 1).getPiece().getColor().equals("White")) {
-                    this.validMoves.add(board.getSpot(this.getX() + 1, this.getY() - 1));
+        }
+    }
+    /**
+    * This method checks if the there is a similar colour piece on the spot and
+    * adds the spot to the first moves list if there is not.
+    * @param board of the game to find the Spot
+    * @param color of the piece to identify the enemies.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    */
+    public void addToFirstListIfOccupied(Board board, String color, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).checkSpot() == false) {
+                if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
+                    this.firstValidMoves.add(board.getSpot(x, y));
                 }
             }
-            
-            if (board.getSpot(this.getX() - 1, this.getY() - 1).checkSpot() == false) {
-                if (board.getSpot(this.getX() - 1, this.getY() - 1).getPiece().getColor().equals("White")) {
-                    this.validMoves.add(board.getSpot(this.getX() - 1, this.getY() - 1));
-                }
-            }
-        } 
+        }
     }
 }

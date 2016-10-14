@@ -1,9 +1,12 @@
 
 package shakkipeli.ui;
 
+import java.awt.BasicStroke;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -64,8 +67,8 @@ public class Drawboard extends JPanel {
     * @param g as the graphics.
     */
     public void drawBoard(Graphics g) {
-        for (int y = 0; y <= 7; y++) {
-            for (int x = 0; x <= 7; x++) {
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
                 if (x % 2 == 1 && y % 2 == 0 || x % 2 == 0 && y % 2 == 1) {
                     g.setColor(Color.decode("#870a0a"));
                 } else {
@@ -93,7 +96,7 @@ public class Drawboard extends JPanel {
     * Draws the pieces based on the ChessPiece's class.
     */
 
-    private void drawChessPieces(Graphics g) throws IOException{
+    private void drawChessPieces(Graphics g) throws IOException {
         for (ChessPiece piece : this.logic.getList()) {
             try {
                 image = ImageIO.read(getPiecePicture(piece));
@@ -104,9 +107,28 @@ public class Drawboard extends JPanel {
             int y = piece.getY();
             g.drawImage(image, x * this.sivu, y * this.sivu, this.sivu, this.sivu, this);
 
+            if (piece.getChosen()) {
+                highlight(piece.getX(), piece.getY(), g);
+            }
         }
         repaint();
     }
+    /**
+    * This method highlights the chosen spot.
+     * @param x the x coordinates of the Spot.
+     * @param y the y coordinates of the Spot.
+     * @param g as the graphics
+    */
+    public void highlight(int x, int y, Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        double thickness = 5.0;
+        Stroke oldStroke = g2.getStroke();
+        g2.setStroke(new BasicStroke((float) thickness));
+        g2.setColor(Color.blue);
+        g2.drawRect(x * 60, y * 60, 60, 60);
+        g2.setStroke(oldStroke);
+    }
+    
     /**
     * Connects the ChessPiece with it's picture in it's File.
     * @param   piece   ChessPiece which needs to be connected to it's File (picture).

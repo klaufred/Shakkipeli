@@ -2,7 +2,6 @@
 package shakkipeli.ui;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import shakkipeli.domain.Spot;
 import shakkipeli.logic.ChessPiece;
 import shakkipeli.logic.GameLogic;
 
@@ -25,23 +24,25 @@ public class Mouselistener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int x = e.getX() / 60;
-        int y = e.getY() / 60;
-
-        if (choosePiece == false) {
-            this.piece = this.logic.findPiece(x, y);
-            choosePiece = true;
-        } else {
-            Spot spot = this.logic.findSpot(x, y);
-            if (this.piece.checkMove(spot, this.logic.getBoard()))  {
-                this.piece.move(spot, this.logic.getBoard());
-                choosePiece = false; 
-            }
-        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        int x = e.getX() / 60;
+        int y = e.getY() / 60;
+
+        if (choosePiece == false && this.logic.findPiece(x, y) != null && this.logic.findPiece(x, y).getColor().equals(this.logic.turnColor())) {
+            this.piece = this.logic.findPiece(x, y);
+            this.piece.choose(true);
+            choosePiece = true;
+        } else if (this.choosePiece == true && this.piece == this.logic.findPiece(x, y)) {
+            this.piece.choose(false);
+            this.choosePiece = false;
+        } else if (this.choosePiece == true) {
+            this.logic.movePiece(this.piece, this.logic.findSpot(x, y));
+            this.choosePiece = false;
+            this.piece.choose(false);
+        } 
     }
 
     @Override

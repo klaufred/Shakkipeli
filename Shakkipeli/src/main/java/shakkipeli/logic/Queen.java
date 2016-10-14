@@ -59,11 +59,13 @@ public class Queen extends ChessPiece {
         this.validMoves.clear();
         
         if (this.getColor().equals("White")) {
-            queensMoves(board, "Black");
+            rooksMoves(board, "Black");
+            bishopsMoves(board, "Black");
         }
         
         if (this.getColor().equals("Black")) {
-            queensMoves(board, "White");
+            rooksMoves(board, "White");
+            bishopsMoves(board, "White");
         } 
     }
     
@@ -71,129 +73,124 @@ public class Queen extends ChessPiece {
         return this.validMoves;
     }
     /**
-    * This method adds the possible moves of the Queen into the validMoves -list.
-    * The Queen has the moves of the rook and the bishop.
+    * This method adds the possible sideways moves of the Queen into the validMoves -list.
+    * The Queen has the moves of the rook and the bishop. These are the rooks moves.
     * @param board of the game need to check the moves.
     * @param color of the piece to identify the enemies.
     */
-    public void queensMoves(Board board, String color) {
-        for (int x = this.getX() + 1; x <= 7; x++) {
-            boolean toBreak = true;
-            for (int y = this.getY() + 1; y <= 7; y++) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                } 
-            }
-            if (toBreak == false) {
-                break;
-            }
-        }
-        
-        for (int x = this.getX() + 1; x <= 7; x++) {
-            boolean toBreak = true;
-            for (int y = this.getY() - 1; y >= 0; y--) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                }
-            }
-            if (toBreak == false) {
-                break;
-            }
-        }
-        
-        for (int x = this.getX() - 1; x >= 0; x--) {
-            boolean toBreak = true;
-            for (int y = this.getY() + 1; y <= 7; y++) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                }
-            }
-            if (toBreak == false) {
-                break;
-            }
-        }
-        
-        for (int x = this.getX() - 1; x >= 0; x--) {
-            boolean toBreak = true;
-            for (int y = this.getY() - 1; y >= 0; y--) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                }
-            }
-            if (toBreak == false) {
-                break;
-            }
-        }
-        
+    
+    public void rooksMoves(Board board, String color) {
         for (int y = this.getY() - 1; y >= 0; y--) {
-            if (board.getSpot(this.getX(), y).checkSpot()) { 
-                this.validMoves.add(board.getSpot(this.getX(), y));
-            } else if (board.getSpot(this.getX(), y).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX(), y));
-                break;
-            } else {
+            if (addToListIfNotOccupied(board, this.getX(), y) == false) { 
+                addToListIfOccupied(board, color, this.getX(), y);
                 break;
             }
         }
         
         for (int x = this.getX() + 1; x <= 7; x++) {
-            if (board.getSpot(x, this.getY()).checkSpot()) { 
-                this.validMoves.add(board.getSpot(x, this.getY()));
-            } else if (board.getSpot(x, this.getY()).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(x, this.getY()));
-                break;
-            } else {
+            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
+                addToListIfOccupied(board, color, x, this.getY());
                 break;
             }
         }
         
         for (int x = this.getX() - 1; x >= 0; x--) {
-            if (board.getSpot(x, this.getY()).checkSpot()) { 
-                this.validMoves.add(board.getSpot(x, this.getY()));
-            } else if (board.getSpot(x, this.getY()).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(x, this.getY()));
-                break;
-            } else {
+            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
+                addToListIfOccupied(board, color, x, this.getY());
                 break;
             }
         }
         
         for (int y = this.getY() + 1; y <= 7; y++) {
-            if (board.getSpot(this.getX(), y).checkSpot()) { 
-                this.validMoves.add(board.getSpot(this.getX(), y));
-            } else if (board.getSpot(this.getX(), y).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX(), y));
+            if (addToListIfNotOccupied(board, this.getX(), y) == false) { 
+                addToListIfOccupied(board, color, this.getX(), y);
                 break;
-            } else {
+            }
+        }
+    }
+    
+    /**
+    * This method adds the possible crossed moves of the Queen into the validMoves -list.
+    * The Queen has the moves of the rook and the bishop. These are the bishops moves.
+    * @param board of the game need to check the moves.
+    * @param color of the piece to identify the enemies.
+    */
+    
+    public void bishopsMoves(Board board, String color) {
+        int toX = this.getX() + 1;
+        int toY = this.getY() + 1;
+        while (toX <= 7 && toY <= 7) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
                 break;
+            }
+            toX++;
+            toY++;
+        }
+        
+        toX = this.getX() - 1;
+        toY = this.getY() + 1;
+        while (toX >= 0 && toY <= 7) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
+                break;
+            }
+            toX--;
+            toY++;
+        }
+        
+        toX = this.getX() + 1;
+        toY = this.getY() - 1;
+        while (toX <= 7 && toY >= 0) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
+                break;
+            }
+            toX++;
+            toY--;
+        }
+        
+        toX = this.getX() - 1;
+        toY = this.getY() - 1;
+        while (toX >= 0 && toY >= 0) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
+                break;
+            }
+            toX--;
+            toY--;
+        }
+    }
+
+    /**
+    * This method checks that the wanted coordinates are on the spot and the spot is empty
+    * and add the spot to the list of valid moves.
+    * @param board of the game to find the Spot.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    * @return boolean true if the Spot is on the board and not occupied.
+    */
+    public boolean addToListIfNotOccupied(Board board, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).checkSpot()) {
+                this.validMoves.add(board.getSpot(x, y));
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+    * This method checks if the there is a similar colour piece on the spot and
+    * adds the spot to the list if there is not.
+    * @param board of the game to find the Spot
+    * @param color of the piece to identify the enemies.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    */
+    public void addToListIfOccupied(Board board, String color, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
+                this.validMoves.add(board.getSpot(x, y));
             }
         }
     }

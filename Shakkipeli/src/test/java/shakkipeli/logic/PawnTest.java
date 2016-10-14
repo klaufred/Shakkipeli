@@ -45,8 +45,62 @@ public class PawnTest {
             this.pawn.move(this.board.getSpot(5, 2), board);
         }
         assertEquals(this.board.getPiece(5, 2).getId(), "Pawn");
-    }  
+    } 
     
+    @Test 
+    public void takeOver2() {
+        this.pawn.update(this.board);
+        this.board.getSpot(6, 2).occupySpot(new Bishop(6, 2, "Black"));
+        if(this.pawn.checkMove(this.board.getSpot(6, 2), board)) {
+            this.pawn.move(this.board.getSpot(6, 2), board);
+        }
+        assertEquals(this.board.getPiece(6, 2).getId(), "Pawn");
+    } 
+    
+    @Test 
+    public void takeOver3() {
+        this.pawn.update(this.board);
+        this.board.getSpot(4, 2).occupySpot(new Bishop(4, 2, "Black"));
+        if(this.pawn.checkMove(this.board.getSpot(4, 2), board)) {
+            this.pawn.move(this.board.getSpot(4, 2), board);
+        }
+        assertEquals(this.board.getPiece(4, 2).getId(), "Pawn");
+    } 
+    
+     @Test 
+    public void moveWorks2() {
+        this.pawn = new Pawn(5, 3, "Black");
+        this.board.getSpot(5, 3).occupySpot(pawn);
+        this.pawn.update(this.board);
+        if(this.pawn.checkMove(this.board.getSpot(5, 2), board)) {
+            this.pawn.move(this.board.getSpot(5, 2), board);
+        }
+        assertEquals(this.board.getPiece(5, 2).getId(), "Pawn");
+    } 
+    
+    @Test 
+    public void takeOver4() {
+        this.pawn = new Pawn(5, 3, "Black");
+        this.board.getSpot(5, 3).occupySpot(pawn);
+        this.pawn.update(this.board);
+        this.board.getSpot(6, 2).occupySpot(new Bishop(6, 2, "White"));
+        if(this.pawn.checkMove(this.board.getSpot(6, 2), board)) {
+            this.pawn.move(this.board.getSpot(6, 2), board);
+        }
+        assertEquals(this.board.getPiece(6, 2).getId(), "Pawn");
+    } 
+    
+    @Test 
+    public void takeOver5() {
+        this.pawn = new Pawn(5, 3, "Black");
+        this.board.getSpot(5, 3).occupySpot(pawn);
+        this.pawn.update(this.board);
+        this.board.getSpot(4, 2).occupySpot(new Bishop(4, 2, "White"));
+        if(this.pawn.checkMove(this.board.getSpot(4, 2), board)) {
+            this.pawn.move(this.board.getSpot(4, 2), board);
+        }
+        assertEquals(this.board.getPiece(4, 2).getId(), "Pawn");
+    } 
     @Test 
     public void takingOverWorks() {
         this.board.getSpot(4, 3).occupySpot(new Bishop(4, 3, "Black"));

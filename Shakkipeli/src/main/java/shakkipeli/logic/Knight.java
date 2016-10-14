@@ -83,67 +83,32 @@ public class Knight extends ChessPiece {
     */
     
     public void knightsMoves(Board board, String color) {
-        if (board.getSpot(this.getX() - 2, this.getY() + 1).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() - 2, this.getY() + 1));
-        } else {
-            if (board.getSpot(this.getX() - 2, this.getY() + 1).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() - 2, this.getY() + 1));
-            }
-        }
-            
-        if (board.getSpot(this.getX() - 2, this.getY() - 1).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() - 2, this.getY() - 1));
-        } else {
-            if (board.getSpot(this.getX() - 2, this.getY() - 1).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() - 2, this.getY() - 1));
-            }
-        }
-            
-        if (board.getSpot(this.getX() + 2, this.getY() + 1).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() + 2, this.getY() + 1));
-        } else {
-            if (board.getSpot(this.getX() + 2, this.getY() + 1).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() + 2, this.getY() + 1));
-            }
-        }
-            
-        if (board.getSpot(this.getX() + 2, this.getY() - 1).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() + 2, this.getY() - 1));
-        } else {
-            if (board.getSpot(this.getX() + 2, this.getY() - 1).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() + 2, this.getY() - 1));
-            }
-        }
-            
-        if (board.getSpot(this.getX() - 1, this.getY() - 2).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() - 1, this.getY() - 2));
-        } else {
-            if (board.getSpot(this.getX() - 1, this.getY() - 2).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() - 1, this.getY() - 2));
-            }
-        }
-            
-        if (board.getSpot(this.getX() - 1, this.getY() + 2).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() - 1, this.getY() + 2));
-        } else {
-            if (board.getSpot(this.getX() - 1, this.getY() + 2).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() - 1, this.getY() + 2));
-            }
-        }
-            
-        if (board.getSpot(this.getX() + 1, this.getY() + 2).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() + 1, this.getY() + 2));
-        } else {
-            if (board.getSpot(this.getX() + 1, this.getY() + 2).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() + 1, this.getY() + 2));
-            }
-        }
-            
-        if (board.getSpot(this.getX() + 1, this.getY() - 2).checkSpot()) {
-            this.validMoves.add(board.getSpot(this.getX() + 1, this.getY() - 2));
-        } else {
-            if (board.getSpot(this.getX() + 1, this.getY() - 2).getPiece().getColor().equals(color)) {
-                this.validMoves.add(board.getSpot(this.getX() + 1, this.getY() - 2));
+        addToListIfCorrect(board, this.getX() - 2, this.getY() + 1, color);
+        addToListIfCorrect(board, this.getX() - 2, this.getY() - 1, color);
+        addToListIfCorrect(board, this.getX() + 2, this.getY() + 1, color);
+        addToListIfCorrect(board, this.getX() + 2, this.getY() - 1, color);
+        addToListIfCorrect(board, this.getX() - 1, this.getY() - 2, color);
+        addToListIfCorrect(board, this.getX() - 1, this.getY() + 2, color);
+        addToListIfCorrect(board, this.getX() + 1, this.getY() - 2, color);
+        addToListIfCorrect(board, this.getX() + 1, this.getY() + 2, color);
+    }
+    /**
+    * This method checks that the wanted coordinates are on the spot and the spot is empty
+    * and adds the spot to the list of valid moves if it is empty of occupied by
+    * an enemy.
+    * @param board of the game to find the Spot.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    * @param color of the enemy.
+    */
+    public void addToListIfCorrect(Board board, int x, int y, String color) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).checkSpot()) {
+                this.validMoves.add(board.getSpot(x, y));
+            } else {
+                if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
+                    this.validMoves.add(board.getSpot(x, y));
+                }
             }
         }
     }

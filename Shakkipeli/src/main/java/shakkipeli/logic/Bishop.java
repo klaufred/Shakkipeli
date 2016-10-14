@@ -73,10 +73,6 @@ public class Bishop extends ChessPiece {
         } 
     }
     
-    public ArrayList<Spot> getMoves() {
-        return this.validMoves;
-    }
-    
     /**
     * This method adds the possible moves of the Bishop into the validMoves -list
     * The Bishop's moves are diagonal.
@@ -86,80 +82,85 @@ public class Bishop extends ChessPiece {
     */
     
     public void bishopsMoves(Board board, String color) {
-        for (int x = this.getX() + 1; x <= 7; x++) {
-            boolean toBreak = true;
-            for (int y = this.getY() + 1; y <= 7; y++) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                } 
-            }
-            if (toBreak == false) {
+        int toX = this.getX() + 1;
+        int toY = this.getY() + 1;
+        while (toX <= 7 && toY <= 7) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
                 break;
             }
+            
+            toX++;
+            toY++;
         }
         
-        for (int x = this.getX() + 1; x <= 7; x++) {
-            boolean toBreak = true;
-            for (int y = this.getY() - 1; y >= 0; y--) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                }
-            }
-            if (toBreak == false) {
+        toX = this.getX() - 1;
+        toY = this.getY() + 1;
+        while (toX >= 0 && toY <= 7) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
                 break;
             }
+            
+            toX--;
+            toY++;
         }
         
-        for (int x = this.getX() - 1; x >= 0; x--) {
-            boolean toBreak = true;
-            for (int y = this.getY() + 1; y <= 7; y++) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                }
-            }
-            if (toBreak == false) {
+        toX = this.getX() + 1;
+        toY = this.getY() - 1;
+        while (toX <= 7 && toY >= 0) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
                 break;
             }
+            
+            toX++;
+            toY--;
         }
         
-        for (int x = this.getX() - 1; x >= 0; x--) {
-            boolean toBreak = true;
-            for (int y = this.getY() - 1; y >= 0; y--) {
-                if (board.getSpot(x, y).checkSpot()) { 
-                    this.validMoves.add(board.getSpot(x, y));
-                } else if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
-                    this.validMoves.add(board.getSpot(x, y));
-                    toBreak = false;
-                    break;
-                } else {
-                    toBreak = false;
-                    break;
-                }
-            }
-            if (toBreak == false) {
+        toX = this.getX() - 1;
+        toY = this.getY() - 1;
+        while (toX >= 0 && toY >= 0) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
                 break;
             }
+            
+            toX--;
+            toY--;
         }
-    } 
+    }
+    /**
+    * This method checks that the wanted coordinates are on the spot and the spot is empty
+    * and add the spot to the list of valid moves.
+    * @param board of the game to find the Spot.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    * @return boolean true if the Spot is on the board and not occupied.
+    */
+    public boolean addToListIfNotOccupied(Board board, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).checkSpot()) {
+                this.validMoves.add(board.getSpot(x, y));
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+    * This method checks if the there is a similar colour piece on the spot and
+    * adds the spot to the list if there is not.
+    * @param board of the game to find the Spot
+    * @param color of the piece to identify the enemies.
+    * @param x the x-coordinates of the Spot.
+    * @param y the y-coordinates of the Spot.
+    */
+    public void addToListIfOccupied(Board board, String color, int x, int y) {
+        if (super.checkTheEdges(x, y)) {
+            if (board.getSpot(x, y).getPiece().getColor().equals(color)) {
+                this.validMoves.add(board.getSpot(x, y));
+            }
+        }
+    }
 }

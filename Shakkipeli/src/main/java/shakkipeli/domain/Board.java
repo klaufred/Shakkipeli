@@ -57,7 +57,7 @@ public class Board {
         }
 
         this.spots[4][0].occupySpot(new King(4, 0, "White"));
-        this.spots[3][3].occupySpot(new Queen(3, 3, "White"));
+        this.spots[3][0].occupySpot(new Queen(3, 0, "White"));
         this.spots[0][0].occupySpot(new Rook(0, 0, "White"));
         this.spots[7][0].occupySpot(new Rook(7, 0, "White"));
         this.spots[2][0].occupySpot(new Bishop(2, 0, "White"));
@@ -105,11 +105,6 @@ public class Board {
     public ChessPiece getPiece(int x, int y) {
         return this.spots[x][y].getPiece();
     }
-    
-    public Spot[][] getSpots() {
-        return this.spots;
-    }
-
     /**
     * This method creates an ArrayList of the pieces and returns it.
     * @return the said ArrayList of 'ChessPieces.

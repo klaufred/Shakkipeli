@@ -51,6 +51,40 @@ public class BishopTest {
     }  
     
     @Test 
+    public void moveWorks2() {
+        this.bishop = new Bishop(4, 4, "Black");
+        this.board.getSpot(4, 4).occupySpot(bishop);
+        this.bishop.update(this.board);
+        if(this.bishop.checkMove(this.board.getSpot(5, 5), board)) {
+            this.bishop.move(this.board.getSpot(5, 5), board);
+        }
+        
+        assertEquals(this.board.getPiece(5, 5).getId(), "Bishop");
+    }  
+    
+    @Test 
+    public void moveWorks3() {
+        this.bishop = new Bishop(4, 4, "Black");
+        this.board.getSpot(4, 4).occupySpot(bishop);
+        this.bishop.update(this.board);
+        if(this.bishop.checkMove(this.board.getSpot(3, 3), board)) {
+            this.bishop.move(this.board.getSpot(3, 3), board);
+        }
+        
+        assertEquals(this.board.getPiece(3, 3).getId(), "Bishop");
+    }  
+    @Test 
+    public void moveWorks4() {
+        this.bishop = new Bishop(4, 4, "White");
+        this.board.getSpot(4, 4).occupySpot(bishop);
+        this.bishop.update(this.board);
+        if(this.bishop.checkMove(this.board.getSpot(5, 3), board)) {
+            this.bishop.move(this.board.getSpot(5, 3), board);
+        }
+        
+        assertEquals(this.board.getPiece(5, 3).getId(), "Bishop");
+    }  
+    @Test 
     public void takingOverWorks() {
         this.board.getSpot(4, 4).occupySpot(new Pawn(3, 5, "Black"));
         this.bishop.update(this.board);

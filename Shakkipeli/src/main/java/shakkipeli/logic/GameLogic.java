@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class GameLogic {
     private Board board;
+    private String currentTurnsColor;
 
     /**
     * This method gives the logic the board and sets the pieces on it.
@@ -19,6 +20,7 @@ public class GameLogic {
     public GameLogic(Board board) {
         this.board = board;
         this.board.setPieces();
+        this.currentTurnsColor = "White";
     }
     
     /**
@@ -29,45 +31,6 @@ public class GameLogic {
     public ArrayList<ChessPiece> getList() {
         return this.board.getPieceList();
     }
-    
-    /* Former method used for the text UI.
-    public boolean validMove(String from, String to) {
-        ChessPiece piece = findPiece(from);
-        return piece.checkMove(findSpot(to), this.board) == true;
-    }
-    
-    */
-
-    /* Former method used for the text UI.
-    public void move(String from, String to) {
-        ChessPiece piece = findPiece(from);
-        piece.move(findSpot(to), this.board);
-    }
-    */
-    
-    
-    /**
-    * This method commands the pieces to move to a new spot.
-    * 
-     * @param fromX the old x coordinate.
-     * @param fromY the old y coordinate.
-     * @param toY the new x coordinate.
-     * @param toX the new y coordinate.
-    */
-    public void move(int fromX, int fromY, int toY, int toX) {
-        ChessPiece piece = findPiece(fromX, fromY);
-        piece.move(findSpot(toX, toY), this.board);
-    }
-    
-    /* Former method used for the text UI.
-    public ChessPiece findPiece(String yx) {
-        int fromY = translateY(yx.charAt(0));
-        int fromX = (yx.charAt(1)) - 1;
-        ChessPiece piece = this.board.getPiece(fromX, fromY);
-        return piece;
-    }    
-    */
-    
     /**
     * This method find a ChessPiece piece that has the wanted coordinates.
     * 
@@ -81,16 +44,6 @@ public class GameLogic {
         ChessPiece piece = this.board.getPiece(x, y);
         return piece;
     } 
-    
-    /* Former method used for the text UI.
-    public Spot findSpot(String yx) {
-        int toX = (yx.charAt(1)) - 1;
-        int toY = translateY(yx.charAt(0));
-        Spot spot = this.board.getSpot(toX, toY);
-        return spot;
-    }
-    */
-    
     /**
     * This method find a spot that has the wanted coordinates.
     * 
@@ -103,31 +56,34 @@ public class GameLogic {
         Spot spot = this.board.getSpot(x, y);
         return spot;
     }
-    
-    public Board getBoard() {
-        return this.board;
-    }
-    /* Former text translater for the text UI.
-     public int translateY(char y) {
-        if (y == 'a') {
-            return 0;
-        } else if (y == 'b') {
-            return 1;
-        } else if (y == 'c') {
-            return 2;
-        } else if (y == 'd') {
-            return 3;
-        } else if (y == 'e') {
-            return 4;
-        } else if (y == 'f') {
-            return 5;
-        } else if (y == 'g') {
-            return 6;
-        } else  {
-            return 7;
-        }
-        
-    }
+    /**
+    * This method commands the pieces to move to a new spot.
+     * @param piece the piece chosen to move.
+     * @param spot the Spot were the piece will move.
     */
-    
+    public void movePiece(ChessPiece piece, Spot spot) {
+        if (piece.checkMove(spot, this.board))  {
+            piece.move(spot, this.board);
+            piece.choose(false);
+            changeTurn();
+        }
+    }
+
+    /**
+    * This method returns the current players colour.
+     * @return String colour of the current player.
+    */
+    public String turnColor() {
+        return this.currentTurnsColor;
+    }
+    /**
+    * This method changes the turn for the next player.
+    */
+    public void changeTurn() {
+        if (this.currentTurnsColor.equals("White")) {
+            this.currentTurnsColor = "Black";
+        } else if (this.currentTurnsColor.equals("Black")) {
+            this.currentTurnsColor = "White";
+        }
+    }
 }

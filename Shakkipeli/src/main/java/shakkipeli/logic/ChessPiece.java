@@ -8,13 +8,14 @@ import java.util.ArrayList;
  * This class works as an abstract class for the pieces. 
  * It has x and y coordinates and is placed the board in a spot.
  * It moves itself on the board.
- * 
+ * It can be chosen to be moved before moved.
  */
 public abstract class ChessPiece {
 
     private int x;
     private int y;
     private String color;
+    private boolean chosen;
 
     /**
     * This method creates the ChessPiece.
@@ -26,6 +27,7 @@ public abstract class ChessPiece {
         this.x = x;
         this.y = y;
         this.color = color;
+        this.chosen = false;
     }
 
     public int getX() {
@@ -91,5 +93,34 @@ public abstract class ChessPiece {
         this.setX(spot.getX());
         this.setY(spot.getY());
         spot.occupySpot(this);
+    }
+    
+    /**
+    * This method keeps sure that the next coordinates are on board.
+    * 
+     * @param toX the x coordinate of the spot.
+     * @param toY the y coordinate of the spot.
+     * @return boolean true if the coordinate is on the board.
+    */
+    public boolean checkTheEdges(int toX, int toY) {
+        if (toX >= 0 && toX <= 7 && toY >= 0 && toY <= 7) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+    * This method notifies the piece that it has been chosen and changes it's status.
+     * @param ifChosen boolean for the chosen attribute.
+    */
+    public void choose(boolean ifChosen) {
+        this.chosen = ifChosen;
+    }
+    /**
+    * This method return the methods chosen status.
+     * @return boolean true if it has been notified to the piece.
+    */
+    public boolean getChosen() {
+        return this.chosen;
     }
 }
