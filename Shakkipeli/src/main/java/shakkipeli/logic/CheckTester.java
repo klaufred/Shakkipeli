@@ -14,11 +14,6 @@ public class CheckTester {
         this.logic = new GameLogic(this.board);
         
         ArrayList<ChessPiece> list = board.getPieceList();
-        
-        for (ChessPiece piece : list) {
-            
-            this.board.setPiece(piece.);
-        }
     }
     
     

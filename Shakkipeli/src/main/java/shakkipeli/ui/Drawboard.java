@@ -20,18 +20,18 @@ import shakkipeli.logic.GameLogic;
 */
 
 public class Drawboard extends JPanel {
-    private File blackKing;
-    private File blackQueen;
-    private File blackBishop;
-    private File blackHorse;
-    private File blackRook;
-    private File blackPawn;
-    private File whiteKing;
-    private File whiteQueen;
-    private File whiteBishop;
-    private File whiteHorse;
-    private File whiteRook;
-    private File whitePawn;
+    private BufferedImage blackKing;
+    private BufferedImage blackQueen;
+    private BufferedImage blackBishop;
+    private BufferedImage blackHorse;
+    private BufferedImage blackRook;
+    private BufferedImage blackPawn;
+    private BufferedImage whiteKing;
+    private BufferedImage whiteQueen;
+    private BufferedImage whiteBishop;
+    private BufferedImage whiteHorse;
+    private BufferedImage whiteRook;
+    private BufferedImage whitePawn;
     
     private GameLogic logic;
     private BufferedImage image;
@@ -46,18 +46,22 @@ public class Drawboard extends JPanel {
         this.logic = logic;
         this.sivu = 60;
         
-        this.blackBishop = new File("src/ChessImages/Black_Bishop.png");
-        this.blackHorse = new File("src/ChessImages/Black_Knight.png");
-        this.blackKing = new File("src/ChessImages/Black_King.png");
-        this.blackPawn = new File("src/ChessImages/Black_Pawn.png");
-        this.blackQueen = new File("src/ChessImages/Black_Queen.png");
-        this.blackRook = new File("src/ChessImages/Black_Rook.png");
-        this.whiteBishop = new File("src/ChessImages/White_Bishop.png");
-        this.whiteHorse = new File("src/ChessImages/White_Knight.png");
-        this.whiteKing = new File("src/ChessImages/White_King.png");
-        this.whitePawn = new File("src/ChessImages/White_Pawn.png");
-        this.whiteQueen = new File("src/ChessImages/White_Queen.png");
-        this.whiteRook = new File("src/ChessImages/White_Rook.png");
+        try {
+            this.blackBishop = ImageIO.read(getClass().getResourceAsStream("Black_Bishop.png"));
+            this.blackHorse = ImageIO.read(getClass().getResourceAsStream("Black_Knight.png"));
+            this.blackQueen = ImageIO.read(getClass().getResourceAsStream("Black_Queen.png"));
+            this.blackKing = ImageIO.read(getClass().getResourceAsStream("Black_King.png"));
+            this.blackRook = ImageIO.read(getClass().getResourceAsStream("Black_Rook.png"));
+            this.blackPawn = ImageIO.read(getClass().getResourceAsStream("Black_Pawn.png"));
+            this.whiteBishop = ImageIO.read(getClass().getResourceAsStream("White_Bishop.png"));
+            this.whiteHorse = ImageIO.read(getClass().getResourceAsStream("White_Knight.png"));
+            this.whiteQueen = ImageIO.read(getClass().getResourceAsStream("White_Queen.png"));
+            this.whiteKing = ImageIO.read(getClass().getResourceAsStream("White_King.png"));
+            this.whiteRook = ImageIO.read(getClass().getResourceAsStream("White_Rook.png"));
+            this.whitePawn = ImageIO.read(getClass().getResourceAsStream("White_Pawn.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Drawboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }
@@ -84,11 +88,9 @@ public class Drawboard extends JPanel {
         super.paintComponent(g);
 
         drawBoard(g);
-        try {
-            drawChessPieces(g);
-        } catch (IOException ex) {
-            Logger.getLogger(Drawboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        //drawChessPieces(g);
+
         repaint();
     }
     
@@ -96,13 +98,11 @@ public class Drawboard extends JPanel {
     * Draws the pieces based on the ChessPiece's class.
     */
 
-    private void drawChessPieces(Graphics g) throws IOException {
+    private void drawChessPieces(Graphics g) {
         for (ChessPiece piece : this.logic.getList()) {
-            try {
-                image = ImageIO.read(getPiecePicture(piece));
-            } catch (IOException ex) {
-                Logger.getLogger(Drawboard.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+            image = getPiecePicture(piece);
+            
             int x = piece.getX();
             int y = piece.getY();
             g.drawImage(image, x * this.sivu, y * this.sivu, this.sivu, this.sivu, this);
@@ -135,7 +135,7 @@ public class Drawboard extends JPanel {
     * 
     * @return File of the piece given as the parameter.
     */
-    public File getPiecePicture(ChessPiece piece) {
+    public BufferedImage getPiecePicture(ChessPiece piece) {
         if (piece.getColor() == "White" && piece.getId() == "Pawn") {
             return this.whitePawn;
         } else if (piece.getColor() == "White" && piece.getId() == "Queen") {
