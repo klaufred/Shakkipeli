@@ -45,12 +45,15 @@ public class Board {
     public Spot getSpot(int x, int y) {
         return this.spots[x][y];
     }
+    
+    public void setPiece(ChessPiece piece) {
+        this.spots[piece.getX()][piece.getY()].occupySpot(piece);
+    }
 
     /**
     * This method creates and puts the ChessPiece- class pieces on the Spot[][]
     * -formed board. 
     */
-    
     public void setPieces() {
         for (int x = 0; x < 8; x++) {
             this.spots[x][1].occupySpot(new Pawn(x, 1, "White"));

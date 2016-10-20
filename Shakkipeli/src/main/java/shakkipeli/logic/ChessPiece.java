@@ -16,6 +16,7 @@ public abstract class ChessPiece {
     private int y;
     private String color;
     private boolean chosen;
+    private ArrayList<Spot> validMoves;
 
     /**
     * This method creates the ChessPiece.
@@ -28,6 +29,7 @@ public abstract class ChessPiece {
         this.y = y;
         this.color = color;
         this.chosen = false;
+        this.validMoves = new ArrayList<>();
     }
 
     public int getX() {
@@ -38,7 +40,7 @@ public abstract class ChessPiece {
         return this.y;
     }
     
-/**
+    /**
     * This method sets the pieces x coordinate.
     * @param x the x coordinate that should be set.
     */
@@ -61,6 +63,10 @@ public abstract class ChessPiece {
     * called. 
     */
     public void update(Board board) {
+    }
+    
+    public ArrayList<Spot> getValidMoves() {
+        return this.validMoves;
     }
     
     public String getId() {
@@ -87,7 +93,6 @@ public abstract class ChessPiece {
     * @param spot were the piece is going to move.
     * @param board of the game need to check the moves.
     */
-    
     public void move(Spot spot, Board board) {
         board.getSpot(this.getX(), this.getY()).emptySpot();
         this.setX(spot.getX());
@@ -116,6 +121,7 @@ public abstract class ChessPiece {
     public void choose(boolean ifChosen) {
         this.chosen = ifChosen;
     }
+    
     /**
     * This method return the methods chosen status.
      * @return boolean true if it has been notified to the piece.

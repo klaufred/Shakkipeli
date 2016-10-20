@@ -12,6 +12,7 @@ public class Mouselistener implements MouseListener {
     private GameLogic logic;
     private ChessPiece piece;
     private boolean choosePiece;
+    private boolean gameOver;
     
     /**
     * This method creates the class. It gives the choosePiece a false boolean. 
@@ -20,6 +21,7 @@ public class Mouselistener implements MouseListener {
     public Mouselistener(GameLogic logic) {
         this.logic = logic;
         this.choosePiece = false;
+        this.gameOver = false;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class Mouselistener implements MouseListener {
             this.piece.choose(false);
             this.choosePiece = false;
         } else if (this.choosePiece == true) {
-            this.logic.movePiece(this.piece, this.logic.findSpot(x, y));
+            gameOver = this.logic.movePiece(this.piece, this.logic.findSpot(x, y));
             this.choosePiece = false;
             this.piece.choose(false);
         } 
