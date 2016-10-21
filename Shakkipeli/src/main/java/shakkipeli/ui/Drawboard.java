@@ -89,7 +89,7 @@ public class Drawboard extends JPanel {
 
         drawBoard(g);
 
-        //drawChessPieces(g);
+        drawChessPieces(g);
 
         repaint();
     }

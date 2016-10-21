@@ -26,6 +26,11 @@ public class Bishop extends ChessPiece {
         super(x, y, color);
         this.validMoves = new ArrayList<>();
     }
+    
+    @Override
+    public ArrayList<Spot> getValidMoves() {
+        return this.validMoves;
+    }
 
     @Override
     public String getId() {

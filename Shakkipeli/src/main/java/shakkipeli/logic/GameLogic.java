@@ -63,8 +63,13 @@ public class GameLogic {
      * @return boolean false if the game is still going, true if it is over.
     */
     public boolean movePiece(ChessPiece piece, Spot spot) {
-        if (piece.checkMove(spot, this.board) && kingInDanger(spot, piece) == false)  {
+        CheckTester tester = new CheckTester(this.board);
+        
+        if (piece.checkMove(spot, this.board) && tester.testForCheckingYourself(piece, spot) == false)  {
             piece.move(spot, this.board);
+            if (tester.testForCheckingOpponent(piece, spot) == true) {
+                return true;
+            }
             piece.choose(false);
             changeTurn();
         }
@@ -87,49 +92,5 @@ public class GameLogic {
         } else if (this.currentTurnsColor.equals("Black")) {
             this.currentTurnsColor = "White";
         }
-    }
-    
-    /**
-    * This method checks if the King is about to fall.
-     * @param spot the SPot that is being checked.
-     * @return true if the game is over.
-    */
-    public boolean checkMate(Spot spot) {
-        if(spot.getPiece() != null && spot.getPiece().getId().equals("King")) {
-            return true;
-        }
-        
-        return false;
-    }
-    
-    /**
-    * This method checks gets all the opposite colours pieces validMoves lists.
-     * @param color the colour of the opposite piece.
-     * @return list of all the opposite pieces moves.
-    */
-    public ArrayList<Spot> getOppositeValidMoves(String color) {
-        String oppositeColor = null;
-        if (color.equals("White")) {
-            oppositeColor = "Black";
-        } else if (color.equals("Black")) {
-            oppositeColor = "White";
-        }
-        
-        ArrayList<ChessPiece> pieces = this.board.getPieceList();
-        ArrayList<Spot> spots = new ArrayList<>();
-        
-        for (ChessPiece piece : pieces) {
-            if (piece.getColor().equals(oppositeColor)) {
-                piece.update(this.board);
-                spots.addAll(piece.getValidMoves());
-            }
-        }
-        
-        return spots;
-    }
-    
-    public boolean kingInDanger(Spot spot, ChessPiece piece) {
-        ArrayList<Spot> oppositeColorsValidMoves = getOppositeValidMoves(piece.getColor());
-        return oppositeColorsValidMoves.contains(spot);
     }
 }

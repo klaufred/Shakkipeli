@@ -33,6 +33,11 @@ public class Pawn extends ChessPiece {
     }
     
     @Override
+    public ArrayList<Spot> getValidMoves() {
+        return this.firstValidMoves;
+    }
+    
+    @Override
      public String getId() {
         return this.id;
     }

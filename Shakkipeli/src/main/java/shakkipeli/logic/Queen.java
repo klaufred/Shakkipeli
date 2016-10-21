@@ -26,6 +26,11 @@ public class Queen extends ChessPiece {
     }
     
     @Override
+    public ArrayList<Spot> getValidMoves() {
+        return this.validMoves;
+    }
+    
+    @Override
     public String getId() {
         return this.id;
     }
