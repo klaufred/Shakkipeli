@@ -86,12 +86,11 @@ public class Drawboard extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         drawBoard(g);
-
-        drawChessPieces(g);
-
-        repaint();
+        drawChessPieces(g); 
+        repaint();  
+        
+        
     }
     
     /**
@@ -131,7 +130,7 @@ public class Drawboard extends JPanel {
     
     /**
     * Connects the ChessPiece with it's picture in it's File.
-    * @param   piece   ChessPiece which needs to be connected to it's File (picture).
+    * @param piece ChessPiece which needs to be connected to it's File (picture).
     * 
     * @return File of the piece given as the parameter.
     */

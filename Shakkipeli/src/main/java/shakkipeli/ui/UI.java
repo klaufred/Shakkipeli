@@ -1,7 +1,6 @@
 
 package shakkipeli.ui;
 
-import shakkipeli.domain.Board;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -15,7 +14,6 @@ import shakkipeli.logic.GameLogic;
 public class UI implements Runnable {
 
     private GameLogic logic;
-    private Board board;
     private JFrame frame;
     private int sivu;
     private Drawboard drawboard;
@@ -25,13 +23,8 @@ public class UI implements Runnable {
     * determines the size of the spots side.
     */
     public UI() {
-        this.board = new Board();
-        this.logic = new GameLogic(this.board);
+        this.logic = new GameLogic();
         this.sivu = 60;
-    }
-    
-    public Board getBoard() {
-        return this.board;
     }
     
     public Drawboard getDrawboard() {

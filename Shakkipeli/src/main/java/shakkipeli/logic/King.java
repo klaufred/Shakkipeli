@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class King extends ChessPiece {
     private String id = "King";
     private ArrayList<Spot> validMoves;
+    private boolean checked;
 
     /**
     * This method creates the King.
@@ -26,6 +27,7 @@ public class King extends ChessPiece {
     public King(int x, int y, String color) {
         super(x, y, color);
         this.validMoves = new ArrayList<>();
+        this.checked = false;
     }
     
     @Override
@@ -116,5 +118,19 @@ public class King extends ChessPiece {
                 }
             }
         }
+    }
+    /**
+    * This method informs the king that it is checked.
+    */
+    public void checked() {
+        this.checked = true;
+    }
+
+    /**
+    * This method returns the kings status.
+     * @return true if it is checked, false if not.
+    */
+    public boolean isChecked() {
+        return this.checked;
     }
 }

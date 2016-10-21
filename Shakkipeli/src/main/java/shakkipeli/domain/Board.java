@@ -19,6 +19,8 @@ public class Board {
 
     private Spot[][] spots;
     private boolean gameStatus;
+    private King whiteKing;
+    private King blackKing;
 
  /**
  * This method creates the board out of Spots. The Board is essentially Spot[][]
@@ -46,6 +48,10 @@ public class Board {
         return this.spots[x][y];
     }
     
+    /**
+    * This method sets a piece on the board.
+     * @param piece that is to be set.
+    */
     public void setPiece(ChessPiece piece) {
         this.spots[piece.getX()][piece.getY()].occupySpot(piece);
     }
@@ -59,7 +65,8 @@ public class Board {
             this.spots[x][1].occupySpot(new Pawn(x, 1, "White"));
         }
 
-        this.spots[4][0].occupySpot(new King(4, 0, "White"));
+        whiteKing = new King(4, 0, "White");
+        this.spots[4][0].occupySpot(whiteKing);
         this.spots[3][0].occupySpot(new Queen(3, 0, "White"));
         this.spots[0][0].occupySpot(new Rook(0, 0, "White"));
         this.spots[7][0].occupySpot(new Rook(7, 0, "White"));
@@ -72,7 +79,8 @@ public class Board {
             this.spots[x][6].occupySpot(new Pawn(x, 6, "Black"));
         }
 
-        this.spots[4][7].occupySpot(new King(4, 7, "Black"));
+        blackKing = new King(4, 7, "Black");
+        this.spots[4][7].occupySpot(blackKing);
         this.spots[3][7].occupySpot(new Queen(3, 7, "Black"));
         this.spots[0][7].occupySpot(new Rook(0, 7, "Black"));
         this.spots[7][7].occupySpot(new Rook(7, 7, "Black"));
@@ -84,11 +92,36 @@ public class Board {
 
     /**
     * This method checks if the game is over.
-    * 
     * @return  a boolean true if the game is still going false if it is over.
     */
     public boolean gameOver() {
         return this.gameStatus;
+    }
+    
+    /**
+    * This method creates and puts the a Black King on the spot of the coordinates.
+     * @param x coordinate
+     * @param y coordinate
+    */
+    public void setBlackKing(int x, int y) {
+        this.blackKing = new King(x, y, "Black");
+    }
+    
+    /**
+    * This method creates and puts the a White King on the spot of the coordinates.
+     * @param x coordinate
+     * @param y coordinate
+    */
+    public void setWhiteKing(int x, int y) {
+        this.whiteKing = new King(x, y, "White");
+    }
+    
+    public King getBlackKing() {
+        return this.blackKing;
+    }
+    
+    public King getWhiteKing() {
+        return this.whiteKing;
     }
 
     /**

@@ -10,3 +10,5 @@ Päivä | Tunnit | Kuvaus
 9.10.2016 | 4h | Käyttöliittymän korjausta, demoesitykseen valmistautumista, koodikatselmoinnissa näytettyjen ongelmien korjausta.
 13.10.2016 | 3h | laudan korjausta.
 14.10.2016 | 8h | Nappuloitten korjaus, laudan korjaus ja käyttöiittymän parantelu.
+20.10.2016 | 4h | Deadlineen valmistelua.
+21.10.2016 | 8h | Deadlineen valmistelua.

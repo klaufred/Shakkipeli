@@ -26,6 +26,17 @@ public class Mouselistener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            if (this.piece.getChosen() == true && this.piece.getId() == "Queen") {
+                this.logic.changeIfPawnAtEdge(piece, "Knight");
+            } else if (this.piece.getChosen() == true && this.piece.getId() == "Knight") {
+                this.logic.changeIfPawnAtEdge(piece, "Rook");
+            } else if (this.piece.getChosen() == true && this.piece.getId() == "Rook") {
+                this.logic.changeIfPawnAtEdge(piece, "Bishop");
+            } else if (this.piece.getChosen() == true && this.piece.getId() == "Bishop") {
+                this.logic.changeIfPawnAtEdge(piece, "Queen");
+            } 
+        }
     }
 
     @Override

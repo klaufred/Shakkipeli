@@ -113,14 +113,12 @@ public class Queen extends ChessPiece {
             }
         }
     }
-    
     /**
     * This method adds the possible crossed moves of the Queen into the validMoves -list.
     * The Queen has the moves of the rook and the bishop. These are the bishops moves.
     * @param board of the game need to check the moves.
     * @param color of the piece to identify the enemies.
     */
-    
     public void bishopsMoves(Board board, String color) {
         int toX = this.getX() + 1;
         int toY = this.getY() + 1;
@@ -166,7 +164,6 @@ public class Queen extends ChessPiece {
             toY--;
         }
     }
-
     /**
     * This method checks that the wanted coordinates are on the spot and the spot is empty
     * and add the spot to the list of valid moves.

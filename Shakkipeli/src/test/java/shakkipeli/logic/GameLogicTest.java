@@ -4,10 +4,7 @@ package shakkipeli.logic;
 import java.util.ArrayList;
 import shakkipeli.logic.GameLogic;
 import shakkipeli.domain.Board;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,8 +14,8 @@ public class GameLogicTest {
     
     @Before
     public void setUp() {
-        this.board = new Board();
-        this.logic = new GameLogic(this.board);
+        this.logic = new GameLogic();
+        this.board = this.logic.getBoard();
     }
     
     @Test 
@@ -124,5 +121,16 @@ public class GameLogicTest {
         this.logic.changeTurn();
         this.logic.changeTurn();
         assertEquals(this.logic.turnColor(),"White");
+    }
+    
+    @Test 
+    public void pawnChangeWorks() { 
+        this.logic = new GameLogic();
+        this.board = this.logic.getBoard();
+        Pawn pawn = new Pawn(6,6, "White");
+        this.board.setPiece(pawn);
+        this.logic.movePiece(pawn, this.board.getSpot(6, 7));
+        this.logic.changeIfPawnAtEdge(pawn, "Knight");
+        assertEquals(this.board.getPiece(6, 7).getId(), "Knight");
     }
 }

@@ -5,18 +5,29 @@ import java.util.ArrayList;
 import shakkipeli.domain.Board;
 import shakkipeli.domain.Spot;
 
+/**
+ * This class tests the games moves for checks.
+ * It has the games old board and makes a list of the current pieces of the game.
+ */
+
 public class CheckTester {
     private Board board;
     private ArrayList<ChessPiece> list;
-    private ArrayList<Spot> oppositeList;
     
+    /**
+    * This method copies the old board and creates a replica of it.
+    * It also makes a list of the current pieces and calls the method that sets them.
+     * @param oldBoard the current board to be copied.
+    */
     public CheckTester(Board oldBoard) {
         this.board = new Board();
         this.list = oldBoard.getPieceList();
-        this.oppositeList = new ArrayList<>();
-        setPieces();
+        this.setPieces();
     }
     
+    /**
+    * This method sets the pieces on the list to the new board on the old spots.
+    */
     public void setPieces() {
         for (ChessPiece piece : this.list) {
             if (piece.getId().equals("Pawn")) {
@@ -26,7 +37,11 @@ public class CheckTester {
             } else if (piece.getId().equals("Queen")) {
                 this.board.setPiece(new Queen(piece.getX(), piece.getY(), piece.getColor()));
             } else if (piece.getId().equals("King")) {
-                this.board.setPiece(new King(piece.getX(), piece.getY(), piece.getColor()));
+                if (piece.getColor().equals("Black")) {
+                    this.board.setBlackKing(piece.getX(), piece.getY());
+                } else {
+                    this.board.setWhiteKing(piece.getX(), piece.getY());
+                }
             } else if (piece.getId().equals("Rook")) {
                 this.board.setPiece(new Rook(piece.getX(), piece.getY(), piece.getColor()));
             } else if (piece.getId().equals("Knight")) {
@@ -34,12 +49,13 @@ public class CheckTester {
             }
         }
     }
-    
+    /**
+    * This method checks that the player doesn't put it's king in danger.
+     * @param movedPiece the piece who's move is tested.
+     * @param spot the place were the potential move is made to.
+     * @return true if the piece is checking the king, false if not.
+    */
     public boolean testForCheckingYourself(ChessPiece movedPiece, Spot spot) {
-        ChessPiece dangeredPiece = null;
-        if (spot.checkSpot() == false) {
-            dangeredPiece = spot.getPiece();
-        }
         
         if (movedPiece.checkMove(spot, board)) {
             movedPiece.move(spot, board);
@@ -47,13 +63,18 @@ public class CheckTester {
         
         for (ChessPiece piece : this.list) {
             piece.update(board);
-            if (!piece.equals(dangeredPiece) && !piece.getColor().equals(movedPiece.getColor()) && testCheck(piece) == true) {
+            if (!piece.getColor().equals(movedPiece.getColor()) && testCheck(piece) == true) {
                 return true;
             }
         }
         return false;
     }
-    
+    /**
+    * This method checks if the opponent is on check.
+     * @param movedPiece the piece who's move is tested.
+     * @param spot the place were the potential move is made to.
+     * @return true if the opponents king is checked, false if not.
+    */
     public boolean testForCheckingOpponent(ChessPiece movedPiece, Spot spot) {
         for (ChessPiece piece : this.list) {
             piece.update(board);
@@ -65,28 +86,26 @@ public class CheckTester {
         
         return false;
     }
-    
-    public King getKing(String color) {
-        for (ChessPiece piece : this.list) {
-            if (piece.getColor().equals(color) && piece.getId().equals("King")) {
-                return (King) piece;
-            }
-        }
-        return null;
-    }
 
+    /**
+    * This method checks whether the piece puts a king in danger.
+     * @param piece the piece that is checked for harming the king.
+     * @return true if the piece is checking the king, false if not.
+    */
     public boolean testCheck(ChessPiece piece) {
         King king = null;
         if (piece.getColor().equals("White")) {
-            king = getKing("Black"); 
+            king = this.board.getBlackKing();
         } else if (piece.getColor().equals("Black")) {
-            king = getKing("White");
+            king = this.board.getWhiteKing();
         }
         
         if (piece.getValidMoves().contains(this.board.getSpot(king.getX(), king.getY()))) {
+            king.checked();
             return true;
         }
         
         return false;
     }
+
 }

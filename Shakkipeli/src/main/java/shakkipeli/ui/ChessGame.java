@@ -25,7 +25,7 @@ public class ChessGame {
         this.white = false;
         this.board = new Board();
         this.reader = new Scanner(System.in);
-        this.logic = new GameLogic(this.board);
+        this.logic = new GameLogic();
         this.board.setPieces();
     }
 
