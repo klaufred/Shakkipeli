@@ -34,7 +34,7 @@ public class Pawn extends ChessPiece {
     
     @Override
     public ArrayList<Spot> getValidMoves() {
-        return this.firstValidMoves;
+        return this.validMoves;
     }
     
     @Override

@@ -10,7 +10,7 @@
 - Valkoinen aloittaa pelin ensimmäisellä siirrolla ja musta hänen jälkeensä.
 - Siirrot alkavat kun oikea pelaaja valitsee nappulan, jolloin nappulan ruutu näkyy sinisenä.
 - Nappuloita liikutetaan valitsemalla ne hiirellä ja valitsemalla haluttu paikka.
-- Peli jatkuu kunnes toisen kuningas kaatuu.
+- Peli jatkuu kunnes toisen kuningas on shakissa.
 
 ## Dokumentaatio
 

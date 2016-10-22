@@ -84,6 +84,7 @@ public abstract class ChessPiece {
      * @return boolean true if it is.
     */
     public boolean checkMove(Spot spot, Board board) {
+        update(board);
         return false;
     }
 

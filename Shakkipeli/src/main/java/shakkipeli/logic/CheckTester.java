@@ -75,17 +75,15 @@ public class CheckTester {
     /**
     * This method checks if the opponent is on check.
      * @param movedPiece the piece who's move is tested.
-     * @return true if the opponents king is checked, false if not.
     */
-    public boolean testForCheckingOpponent(ChessPiece movedPiece) {
+    public void testForCheckingOpponent(ChessPiece movedPiece) {
         for (ChessPiece piece : this.list) {
             piece.update(board);
             if (movedPiece.getColor().equals(piece.getColor()) && testCheck(piece) == true) {
-                return true;
+                System.out.println(piece.getColor() + " " + piece.getId() + " checks King");
+                System.out.println("");
             }
         }
-        
-        return false;
     }
 
     /**

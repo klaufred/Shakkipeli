@@ -59,22 +59,16 @@ public class GameLogic {
     * This method commands the pieces to move to a new spot. And checks if the game is over.
      * @param piece the piece chosen to move.
      * @param spot the Spot were the piece will move.
-     * @return boolean false if the game is still going, true if it is over.
     */
-    public boolean movePiece(ChessPiece piece, Spot spot) {
+    public void movePiece(ChessPiece piece, Spot spot) {
         CheckTester tester = new CheckTester(this.board);
         
         if (piece.checkMove(spot, this.board) && tester.testForCheckingYourself(piece, spot) == false) {
             piece.move(spot, this.board);
             changePawnIfAtEdge(piece);
-            if (tester.testForCheckingOpponent(piece)) {
-                System.out.println(piece.getColor() + " " + piece.getId() + " checks King");
-                System.out.println("");
-            }
-            piece.choose(false);
+            tester.testForCheckingOpponent(piece);
             changeTurn();
         }
-        return false;
     }
 
     /**

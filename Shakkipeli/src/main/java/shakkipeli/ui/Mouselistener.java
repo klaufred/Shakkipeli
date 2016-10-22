@@ -42,7 +42,7 @@ public class Mouselistener implements MouseListener {
                 this.piece.choose(false);
                 this.choosePiece = false;
             } else if (this.choosePiece == true) {
-                this.gameOver = this.logic.movePiece(this.piece, this.logic.findSpot(x, y));
+                this.logic.movePiece(this.piece, this.logic.findSpot(x, y));
                 this.choosePiece = false;
                 this.piece.choose(false);
             }   
