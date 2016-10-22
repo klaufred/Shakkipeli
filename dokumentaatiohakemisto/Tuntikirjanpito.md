@@ -11,4 +11,5 @@ Päivä | Tunnit | Kuvaus
 13.10.2016 | 3h | laudan korjausta.
 14.10.2016 | 8h | Nappuloitten korjaus, laudan korjaus ja käyttöiittymän parantelu.
 20.10.2016 | 4h | Deadlineen valmistelua.
-21.10.2016 | 8h | Deadlineen valmistelua.
+21.10.2016 | 9h | Deadlineen valmistelua.
+22.10.2016 | 1h | Pientä säätöä kun kerran voi vielä.

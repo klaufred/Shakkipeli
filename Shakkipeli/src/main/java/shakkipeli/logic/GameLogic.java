@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class GameLogic {
     private Board board;
     private String currentTurnsColor;
-    private boolean gameStatus;
 
     /**
     * This method gives the logic the board and sets the pieces on it.
@@ -21,7 +20,6 @@ public class GameLogic {
         this.board = new Board();
         this.board.setPieces();
         this.currentTurnsColor = "White";
-        this.gameStatus = true;
     }
     
     /**
@@ -66,18 +64,15 @@ public class GameLogic {
     public boolean movePiece(ChessPiece piece, Spot spot) {
         CheckTester tester = new CheckTester(this.board);
         
-        if (piece.checkMove(spot, this.board) && kingChecked(piece) == false) {
-            if (tester.testForCheckingYourself(piece, spot) == false) {
-                piece.move(spot, this.board);
-                changeIfPawnAtEdge(piece, "Queen");
-                if (tester.testForCheckingOpponent(piece, spot) == true) {
-                    piece.choose(false);
-                    changeTurn();
-                    return true;
-                }
-                piece.choose(false);
-                changeTurn();
+        if (piece.checkMove(spot, this.board) && tester.testForCheckingYourself(piece, spot) == false) {
+            piece.move(spot, this.board);
+            changePawnIfAtEdge(piece);
+            if (tester.testForCheckingOpponent(piece)) {
+                System.out.println(piece.getColor() + " " + piece.getId() + " checks King");
+                System.out.println("");
             }
+            piece.choose(false);
+            changeTurn();
         }
         return false;
     }
@@ -100,61 +95,21 @@ public class GameLogic {
         }
     }
     /**
-    * This method changes the pawn at edge in to an other piece.
+    * This method changes the pawn at edge in to a Queen.
      * @param piece the pawn to be changed.
-     * @param id the id of the new piece.
     */
-    public void changeIfPawnAtEdge(ChessPiece piece, String id) {
+    public void changePawnIfAtEdge(ChessPiece piece) {
         if (piece.getId().equals("Pawn") && (piece.getY() == 7 || piece.getY() == 0)) {
             int intX = piece.getX();
             int intY = piece.getY();
             String color = piece.getColor();
-            this.board.getSpot(intX, intY).emptySpot();
-            if (id.equals("Queen")) {
-                this.board.getSpot(intX, intY).occupySpot(new Queen(intX, intY, color));
-            } else if (id.equals("Bishop")) {
-                this.board.getSpot(intX, intY).occupySpot(new Bishop(intX, intY, color));
-            } else if (id.equals("Rook")) {
-                this.board.getSpot(intX, intY).occupySpot(new Rook(intX, intY, color));
-            } else if (id.equals("Knight")) {
-                this.board.getSpot(intX, intY).occupySpot(new Knight(intX, intY, color));
-            }
             
+            this.board.getSpot(intX, intY).emptySpot();
+            this.board.getSpot(intX, intY).occupySpot(new Queen(intX, intY, color)); 
         }
     }
 
     public Board getBoard() {
         return this.board;
-    }
-
-    /**
-    * This method checks the games status and sends it along.
-     * @return true if the game is going on, false if it is over.
-    */
-    public boolean getGameStatus() {
-        return gameStatus;
-    }
-
-    /**
-    * This method changes the games status to be false.
-    */
-    public void checkGameOver() {
-        this.gameStatus = false;  
-    }
-
-    /**
-    * This method checks if the pieces king is checked.
-     * @param piece that is on the kings side.
-     * @return true if the king is checked.
-    */
-    public boolean kingChecked(ChessPiece piece) {
-        King king = null;
-        if (piece.getColor().equals("White")) {
-            king = this.board.getWhiteKing();
-        } else {
-            king = this.board.getBlackKing();
-        }
-        
-        return king.isChecked();
     }
 }

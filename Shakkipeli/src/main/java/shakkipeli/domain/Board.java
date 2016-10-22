@@ -64,9 +64,7 @@ public class Board {
         for (int x = 0; x < 8; x++) {
             this.spots[x][1].occupySpot(new Pawn(x, 1, "White"));
         }
-
-        whiteKing = new King(4, 0, "White");
-        this.spots[4][0].occupySpot(whiteKing);
+        setWhiteKing(4, 0);
         this.spots[3][0].occupySpot(new Queen(3, 0, "White"));
         this.spots[0][0].occupySpot(new Rook(0, 0, "White"));
         this.spots[7][0].occupySpot(new Rook(7, 0, "White"));
@@ -79,8 +77,7 @@ public class Board {
             this.spots[x][6].occupySpot(new Pawn(x, 6, "Black"));
         }
 
-        blackKing = new King(4, 7, "Black");
-        this.spots[4][7].occupySpot(blackKing);
+        setBlackKing(4, 7);
         this.spots[3][7].occupySpot(new Queen(3, 7, "Black"));
         this.spots[0][7].occupySpot(new Rook(0, 7, "Black"));
         this.spots[7][7].occupySpot(new Rook(7, 7, "Black"));
@@ -105,6 +102,7 @@ public class Board {
     */
     public void setBlackKing(int x, int y) {
         this.blackKing = new King(x, y, "Black");
+        this.spots[x][y].occupySpot(blackKing);
     }
     
     /**
@@ -114,6 +112,7 @@ public class Board {
     */
     public void setWhiteKing(int x, int y) {
         this.whiteKing = new King(x, y, "White");
+        this.spots[x][y].occupySpot(whiteKing);
     }
     
     public King getBlackKing() {

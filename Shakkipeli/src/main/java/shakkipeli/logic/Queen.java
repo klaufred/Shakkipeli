@@ -46,10 +46,7 @@ public class Queen extends ChessPiece {
     @Override
     public boolean checkMove(Spot spot, Board board) {
         this.update(board);
-        if (this.validMoves.contains(spot)) {
-            return true;
-        }
-        return false;
+        return this.validMoves.contains(spot);
     }
     
     /**
@@ -64,13 +61,11 @@ public class Queen extends ChessPiece {
         this.validMoves.clear();
         
         if (this.getColor().equals("White")) {
-            rooksMoves(board, "Black");
-            bishopsMoves(board, "Black");
+            queensMoves(board, "Black");
         }
         
         if (this.getColor().equals("Black")) {
-            rooksMoves(board, "White");
-            bishopsMoves(board, "White");
+            queensMoves(board, "White");
         } 
     }
     
@@ -78,35 +73,28 @@ public class Queen extends ChessPiece {
         return this.validMoves;
     }
     /**
-    * This method adds the possible sideways moves of the Queen into the validMoves -list.
-    * The Queen has the moves of the rook and the bishop. These are the rooks moves.
+    * This method calls the methods that add the possible sideways and diagonal moves of the Queen into the validMoves -list.
+    * The Queen has the moves of the rook and the bishop.
     * @param board of the game need to check the moves.
     * @param color of the piece to identify the enemies.
     */
-    
-    public void rooksMoves(Board board, String color) {
+    public void queensMoves(Board board, String color) {
+        this.queensMovesRight(board, color);
+        this.queensMovesLeft(board, color);
+        this.queensMovesForward(board, color);
+        this.queensMovesBackward(board, color);
+        this.queensMovesLeftAndBackward(board, color);
+        this.queensMovesLeftAndForward(board, color);
+        this.queensMovesRightAndBackward(board, color);
+        this.queensMovesRightAndForward(board, color);
+    }
+    /**
+     * This method add all possible moves for the queen on the forward side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesForward(Board board, String color) {
         for (int y = this.getY() - 1; y >= 0; y--) {
-            if (addToListIfNotOccupied(board, this.getX(), y) == false) { 
-                addToListIfOccupied(board, color, this.getX(), y);
-                break;
-            }
-        }
-        
-        for (int x = this.getX() + 1; x <= 7; x++) {
-            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
-                addToListIfOccupied(board, color, x, this.getY());
-                break;
-            }
-        }
-        
-        for (int x = this.getX() - 1; x >= 0; x--) {
-            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
-                addToListIfOccupied(board, color, x, this.getY());
-                break;
-            }
-        }
-        
-        for (int y = this.getY() + 1; y <= 7; y++) {
             if (addToListIfNotOccupied(board, this.getX(), y) == false) { 
                 addToListIfOccupied(board, color, this.getX(), y);
                 break;
@@ -114,12 +102,70 @@ public class Queen extends ChessPiece {
         }
     }
     /**
-    * This method adds the possible crossed moves of the Queen into the validMoves -list.
-    * The Queen has the moves of the rook and the bishop. These are the bishops moves.
-    * @param board of the game need to check the moves.
-    * @param color of the piece to identify the enemies.
-    */
-    public void bishopsMoves(Board board, String color) {
+     * This method add all possible moves for the queen on the backward side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesBackward(Board board, String color) {
+        for (int y = this.getY() + 1; y <= 7; y++) {
+            if (addToListIfNotOccupied(board, this.getX(), y) == false) { 
+                addToListIfOccupied(board, color, this.getX(), y);
+                break;
+            }
+        }
+    }
+    
+    /**
+     * This method add all possible moves for the queen on the right side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesRight(Board board, String color) {
+        for (int x = this.getX() + 1; x <= 7; x++) {
+            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
+                addToListIfOccupied(board, color, x, this.getY());
+                break;
+            }
+        }
+    }
+    /**
+     * This method add all possible moves for the queen on the left side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesLeft(Board board, String color) {
+        for (int x = this.getX() - 1; x >= 0; x--) {
+            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
+                addToListIfOccupied(board, color, x, this.getY());
+                break;
+            }
+        }
+    }
+    
+    /**
+     * This method add all possible moves for the queen diagonally in the right and forward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesRightAndForward(Board board, String color) {
+        int toX = this.getX() + 1;
+        int toY = this.getY() - 1;
+        while (toX <= 7 && toY >= 0) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
+                break;
+            }
+            
+            toX++;
+            toY--;
+        }
+    }
+    /**
+     * This method add all possible moves for the queen diagonally in the right and backward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesRightAndBackward(Board board, String color) {
         int toX = this.getX() + 1;
         int toY = this.getY() + 1;
         while (toX <= 7 && toY <= 7) {
@@ -127,39 +173,43 @@ public class Queen extends ChessPiece {
                 addToListIfOccupied(board, color, toX, toY);
                 break;
             }
+            
             toX++;
             toY++;
         }
-        
-        toX = this.getX() - 1;
-        toY = this.getY() + 1;
+    }
+    /**
+     * This method add all possible moves for the queen diagonally in the left and backward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesLeftAndBackward(Board board, String color) {
+        int toX = this.getX() - 1;
+        int toY = this.getY() + 1;
         while (toX >= 0 && toY <= 7) {
             if (addToListIfNotOccupied(board, toX, toY) == false) { 
                 addToListIfOccupied(board, color, toX, toY);
                 break;
             }
+            
             toX--;
             toY++;
         }
-        
-        toX = this.getX() + 1;
-        toY = this.getY() - 1;
-        while (toX <= 7 && toY >= 0) {
-            if (addToListIfNotOccupied(board, toX, toY) == false) { 
-                addToListIfOccupied(board, color, toX, toY);
-                break;
-            }
-            toX++;
-            toY--;
-        }
-        
-        toX = this.getX() - 1;
-        toY = this.getY() - 1;
+    }
+    /**
+     * This method add all possible moves for the queen diagonally in the left and forward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void queensMovesLeftAndForward(Board board, String color) {
+        int toX = this.getX() - 1;
+        int toY = this.getY() - 1;
         while (toX >= 0 && toY >= 0) {
             if (addToListIfNotOccupied(board, toX, toY) == false) { 
                 addToListIfOccupied(board, color, toX, toY);
                 break;
             }
+            
             toX--;
             toY--;
         }

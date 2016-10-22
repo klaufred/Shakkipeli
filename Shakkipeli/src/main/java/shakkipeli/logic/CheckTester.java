@@ -22,13 +22,13 @@ public class CheckTester {
     public CheckTester(Board oldBoard) {
         this.board = new Board();
         this.list = oldBoard.getPieceList();
-        this.setPieces();
+        this.setSpecificPieces();
     }
     
     /**
     * This method sets the pieces on the list to the new board on the old spots.
     */
-    public void setPieces() {
+    public void setSpecificPieces() {
         for (ChessPiece piece : this.list) {
             if (piece.getId().equals("Pawn")) {
                 this.board.setPiece(new Pawn(piece.getX(), piece.getY(), piece.getColor()));
@@ -56,9 +56,12 @@ public class CheckTester {
      * @return true if the piece is checking the king, false if not.
     */
     public boolean testForCheckingYourself(ChessPiece movedPiece, Spot spot) {
+        ChessPiece copyPiece = this.board.getPiece(movedPiece.getX(), movedPiece.getY());
+        Spot copySpot = this.board.getSpot(spot.getX(), spot.getY());
         
-        if (movedPiece.checkMove(spot, board)) {
-            movedPiece.move(spot, board);
+        if (copyPiece.checkMove(copySpot, this.board)) {
+            copyPiece.move(copySpot, this.board);
+            this.list = this.board.getPieceList();
         }
         
         for (ChessPiece piece : this.list) {
@@ -72,14 +75,12 @@ public class CheckTester {
     /**
     * This method checks if the opponent is on check.
      * @param movedPiece the piece who's move is tested.
-     * @param spot the place were the potential move is made to.
      * @return true if the opponents king is checked, false if not.
     */
-    public boolean testForCheckingOpponent(ChessPiece movedPiece, Spot spot) {
+    public boolean testForCheckingOpponent(ChessPiece movedPiece) {
         for (ChessPiece piece : this.list) {
             piece.update(board);
             if (movedPiece.getColor().equals(piece.getColor()) && testCheck(piece) == true) {
-                System.out.println(piece.getColor() + " " + piece.getId() + " checks");
                 return true;
             }
         }
@@ -88,7 +89,7 @@ public class CheckTester {
     }
 
     /**
-    * This method checks whether the piece puts a king in danger.
+    * This method checks whether the piece puts the king in danger.
      * @param piece the piece that is checked for harming the king.
      * @return true if the piece is checking the king, false if not.
     */
@@ -96,12 +97,11 @@ public class CheckTester {
         King king = null;
         if (piece.getColor().equals("White")) {
             king = this.board.getBlackKing();
-        } else if (piece.getColor().equals("Black")) {
+        } else {
             king = this.board.getWhiteKing();
         }
         
         if (piece.getValidMoves().contains(this.board.getSpot(king.getX(), king.getY()))) {
-            king.checked();
             return true;
         }
         

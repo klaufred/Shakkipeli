@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -155,7 +154,7 @@ public class Drawboard extends JPanel {
             return  this.blackPawn;
         } else if (piece.getColor() == "Black" && piece.getId() == "Rook") {
             return  this.blackRook;
-        } else if (piece.getColor() == "Black" && piece.getId() == "Bishop") {
+        } else if ("Black".equals(piece.getColor()) && piece.getId() == "Bishop") {
             return  this.blackBishop;
         } else {
             return  this.blackHorse;

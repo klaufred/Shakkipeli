@@ -38,7 +38,7 @@ public class RookTest {
     }  
     
     @Test 
-    public void moveWorks() {
+    public void moveBackwardWorks() {
         this.rook.update(this.board);
         if(this.rook.checkMove(this.board.getSpot(4, 4), board)) {
             this.rook.move(this.board.getSpot(4, 4), board);
@@ -46,6 +46,38 @@ public class RookTest {
         
         assertEquals(this.board.getPiece(4, 4).getId(), "Rook");
     }  
+    
+    @Test 
+    public void moveLeftWorks() {
+        this.rook.update(this.board);
+        if(this.rook.checkMove(this.board.getSpot(3, 3), board)) {
+            this.rook.move(this.board.getSpot(3, 3), board);
+        }
+        
+        assertEquals(this.board.getPiece(3, 3).getId(), "Rook");
+    }
+    
+    @Test 
+    public void moveForwardWorks() {
+        this.rook = new Rook(4,5, "White");
+        
+        this.rook.update(this.board);
+        if(this.rook.checkMove(this.board.getSpot(4, 4), board)) {
+            this.rook.move(this.board.getSpot(4, 4), board);
+        }
+        
+        assertEquals(this.board.getPiece(4, 4).getId(), "Rook");
+    }
+    
+    @Test 
+    public void moveRightWorks() {
+        this.rook.update(this.board);
+        if(this.rook.checkMove(this.board.getSpot(5, 3), board)) {
+            this.rook.move(this.board.getSpot(5, 3), board);
+        }
+        
+        assertEquals(this.board.getPiece(5, 3).getId(), "Rook");
+    }
     
     @Test 
     public void takingOverWorks() {

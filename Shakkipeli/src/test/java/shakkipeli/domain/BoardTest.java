@@ -2,17 +2,8 @@
 package shakkipeli.domain;
 
 import java.util.ArrayList;
-import shakkipeli.logic.Bishop;
-import shakkipeli.domain.Board;
-import shakkipeli.logic.King;
-import shakkipeli.logic.Knight;
-import shakkipeli.logic.Pawn;
-import shakkipeli.logic.Queen;
-import shakkipeli.logic.Rook;
-import org.junit.After;
-import org.junit.AfterClass;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import shakkipeli.logic.ChessPiece;

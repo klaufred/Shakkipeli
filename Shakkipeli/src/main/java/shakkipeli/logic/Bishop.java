@@ -79,14 +79,43 @@ public class Bishop extends ChessPiece {
     }
     
     /**
-    * This method adds the possible moves of the Bishop into the validMoves -list
-    * The Bishop's moves are diagonal.
+    * This method calls the methods that add the acceptable spots to the validMoves list.
+    * The Bishop can anywere as long as it is diagonally.
     * 
     * @param board of the game need to check the moves.
     * @param color of the piece to identify the enemies.
     */
     
     public void bishopsMoves(Board board, String color) {
+        this.bishopsMovesLeftAndBackward(board, color);
+        this.bishopsMovesLeftAndForward(board, color);
+        this.bishopsMovesRightAndBackward(board, color);
+        this.bishopsMovesRightAndForward(board, color);
+    }
+    /**
+     * This method add all possible moves for the bishop diagonally in the right and forward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void bishopsMovesRightAndForward(Board board, String color) {
+        int toX = this.getX() + 1;
+        int toY = this.getY() - 1;
+        while (toX <= 7 && toY >= 0) {
+            if (addToListIfNotOccupied(board, toX, toY) == false) { 
+                addToListIfOccupied(board, color, toX, toY);
+                break;
+            }
+            
+            toX++;
+            toY--;
+        }
+    }
+    /**
+     * This method add all possible moves for the bishop diagonally in the right and backward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void bishopsMovesRightAndBackward(Board board, String color) {
         int toX = this.getX() + 1;
         int toY = this.getY() + 1;
         while (toX <= 7 && toY <= 7) {
@@ -98,9 +127,15 @@ public class Bishop extends ChessPiece {
             toX++;
             toY++;
         }
-        
-        toX = this.getX() - 1;
-        toY = this.getY() + 1;
+    }
+    /**
+     * This method add all possible moves for the bishop diagonally in the left and backward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void bishopsMovesLeftAndBackward(Board board, String color) {
+        int toX = this.getX() - 1;
+        int toY = this.getY() + 1;
         while (toX >= 0 && toY <= 7) {
             if (addToListIfNotOccupied(board, toX, toY) == false) { 
                 addToListIfOccupied(board, color, toX, toY);
@@ -110,21 +145,15 @@ public class Bishop extends ChessPiece {
             toX--;
             toY++;
         }
-        
-        toX = this.getX() + 1;
-        toY = this.getY() - 1;
-        while (toX <= 7 && toY >= 0) {
-            if (addToListIfNotOccupied(board, toX, toY) == false) { 
-                addToListIfOccupied(board, color, toX, toY);
-                break;
-            }
-            
-            toX++;
-            toY--;
-        }
-        
-        toX = this.getX() - 1;
-        toY = this.getY() - 1;
+    }
+    /**
+     * This method add all possible moves for the bishop diagonally in the left and forward direction.
+     * @param board used by the listing method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void bishopsMovesLeftAndForward(Board board, String color) {
+        int toX = this.getX() - 1;
+        int toY = this.getY() - 1;
         while (toX >= 0 && toY >= 0) {
             if (addToListIfNotOccupied(board, toX, toY) == false) { 
                 addToListIfOccupied(board, color, toX, toY);
@@ -152,7 +181,6 @@ public class Bishop extends ChessPiece {
         }
         return false;
     }
-    
     /**
     * This method checks if the there is a similar colour piece on the spot and
     * adds the spot to the list if there is not.

@@ -51,10 +51,7 @@ public class Rook extends ChessPiece {
     @Override
     public boolean checkMove(Spot spot, Board board) {
         this.update(board);
-        if (this.validMoves.contains(spot)) {
-            return true;
-        }
-        return false;
+        return this.validMoves.contains(spot);
     }
     
     /**
@@ -80,34 +77,37 @@ public class Rook extends ChessPiece {
     }
     
     /**
-    * This method adds the possible moves of the Rook into the validMoves -list
+    * This method calls the methods that add the acceptable spots to the validMoves list.
     * The Rook can move forward, backward, and to the sides.
     * 
     * @param board of the game need to check the moves.
     * @param color of the piece to identify the enemies.
     */
     public void rooksMoves(Board board, String color) {
+        this.rooksMovesRight(board, color);
+        this.rooksMovesLeft(board, color);
+        this.rooksMovesForward(board, color);
+        this.rooksMovesBackward(board, color);
+    }
+    /**
+     * This method add all possible moves for the rook on the forward side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void rooksMovesForward(Board board, String color) {
         for (int y = this.getY() - 1; y >= 0; y--) {
             if (addToListIfNotOccupied(board, this.getX(), y) == false) { 
                 addToListIfOccupied(board, color, this.getX(), y);
                 break;
             }
         }
-        
-        for (int x = this.getX() + 1; x <= 7; x++) {
-            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
-                addToListIfOccupied(board, color, x, this.getY());
-                break;
-            }
-        }
-        
-        for (int x = this.getX() - 1; x >= 0; x--) {
-            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
-                addToListIfOccupied(board, color, x, this.getY());
-                break;
-            }
-        }
-        
+    }
+    /**
+     * This method add all possible moves for the rook on the backward side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void rooksMovesBackward(Board board, String color) {
         for (int y = this.getY() + 1; y <= 7; y++) {
             if (addToListIfNotOccupied(board, this.getX(), y) == false) { 
                 addToListIfOccupied(board, color, this.getX(), y);
@@ -115,6 +115,35 @@ public class Rook extends ChessPiece {
             }
         }
     }
+    
+    /**
+     * This method add all possible moves for the rook on the right side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void rooksMovesRight(Board board, String color) {
+        for (int x = this.getX() + 1; x <= 7; x++) {
+            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
+                addToListIfOccupied(board, color, x, this.getY());
+                break;
+            }
+        }
+    }
+    /**
+     * This method add all possible moves for the rook on the left side of the board.
+     * @param board used by the method that this method calls.
+     * @param color the color of the piece to identify the enemies.
+     */
+    public void rooksMovesLeft(Board board, String color) {
+        for (int x = this.getX() - 1; x >= 0; x--) {
+            if (addToListIfNotOccupied(board, x, this.getY()) == false) { 
+                addToListIfOccupied(board, color, x, this.getY());
+                break;
+            }
+        }
+    }
+    
+    
     /**
     * This method checks that the wanted coordinates are on the spot and the spot is empty
     * and add the spot to the list of valid moves.

@@ -53,10 +53,7 @@ public class King extends ChessPiece {
     @Override
     public boolean checkMove(Spot spot, Board board) {
         this.update(board);
-        if (this.validMoves.contains(spot)) {
-            return true;
-        }
-        return false;
+        return this.validMoves.contains(spot);
     }
     
     /**
@@ -118,19 +115,5 @@ public class King extends ChessPiece {
                 }
             }
         }
-    }
-    /**
-    * This method informs the king that it is checked.
-    */
-    public void checked() {
-        this.checked = true;
-    }
-
-    /**
-    * This method returns the kings status.
-     * @return true if it is checked, false if not.
-    */
-    public boolean isChecked() {
-        return this.checked;
     }
 }

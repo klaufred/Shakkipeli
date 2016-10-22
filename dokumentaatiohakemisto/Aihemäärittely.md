@@ -8,12 +8,11 @@
 
 ### Kaikkien käyttäjien toiminnot: 
 - Pelaajat avaavat ohjelman.
-- He päättävät kumpi pelaa valkoisella ja kumpi mustalla.
 - Valkoinen aloittaa pelin ensimmäisellä siirrolla ja musta hänen jälkeensä.
-- Peli jatkuu kunnes toisen kuningas kaatuu tai tulee tasapeli.
+- Peli jatkuu kunnes toisen kuningas kaatuu. Peli loppuu kun peli kertoo "CheckMate!"
 
 ## Rakennekuvaus.
-### Ohjelman main aloittaa ohjelman luomalla käyttöliittymän UI. Käyttöliittymä luo Mouselistenerin, joka kuuntelee ja reagoi hiireen, Drawdoardin, joka piirtää laudan ja nappulat ja Gamellogicin joka toimii pelin logiikkana. UI luo myös laudan joka luo kaikki Spot oliot, jotka toimivat ruutuina. Board Luo Ruuduille Nappulat, jotka voivat olla Kuningas, Kuningatar, Lähetti, Torni, Sotilas tai Ritari. Kaikki nämä kuuluvat ChessPiece- abstractiin luokkaan ja ovat aina kiinni jossakin ruudussa.
+### Ohjelman main aloittaa ohjelman luomalla käyttöliittymän UI. Käyttöliittymä luo Mouselistenerin, joka kuuntelee ja reagoi hiireen, Drawdoardin, joka piirtää laudan ja nappulat ja GameLogicin joka toimii pelin logiikkana. GameLogic luo Laudan joka luo kaikki Spot oliot, jotka toimivat ruutuina, sekä CheckTester olion, joka tekee testisiirron kopiolaudalle ja tarkistaa joutuuko oma tai vastustajan kuningas shakkiin. Board Luo Ruuduille(Spot) Nappulat(ChessPiece), jotka voivat olla Kuningas, Kuningatar, Lähetti, Torni, Sotilas tai Ritari. Kaikki nämä kuuluvat ChessPiece- abstractiin luokkaan ja ovat aina kiinni jossakin ruudussa.
 
-### Logiikka pystyy hakemaan laudan kautta ruutuja ja liikuttaa nappuloita. Nappulat liikuttavat itseään laudalla. Mouselistener käskee logiikan tekemään siirtoja.
+### Logiikka pystyy hakemaan laudan kautta ruutuja ja liikuttaa nappuloita. Nappulat liikuttavat itseään laudalla. Mouselistener käskee logiikan tekemään siirtoja. DrawBoard tekee graaffisen laudan ja nappulat. CheckTester tekee kopion laudasta ja katsoo tekeekö jokin siirto shakin. 
 

@@ -51,10 +51,7 @@ public class Knight extends ChessPiece {
     @Override
     public boolean checkMove(Spot spot, Board board) {
         this.update(board);
-        if (this.validMoves.contains(spot)) {
-            return true;
-        }
-        return false;
+        return this.validMoves.contains(spot);
     }
     
     /**

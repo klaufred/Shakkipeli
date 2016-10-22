@@ -127,10 +127,10 @@ public class GameLogicTest {
     public void pawnChangeWorks() { 
         this.logic = new GameLogic();
         this.board = this.logic.getBoard();
-        Pawn pawn = new Pawn(6,6, "White");
+        ChessPiece pawn = new Pawn(6,7, "Black");
+        this.board.getSpot(6, 7).emptySpot();
         this.board.setPiece(pawn);
-        this.logic.movePiece(pawn, this.board.getSpot(6, 7));
-        this.logic.changeIfPawnAtEdge(pawn, "Knight");
-        assertEquals(this.board.getPiece(6, 7).getId(), "Knight");
+        this.logic.changePawnIfAtEdge(pawn);
+        assertEquals(this.board.getPiece(6, 7).getId(), "Queen");
     }
 }

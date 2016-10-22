@@ -26,17 +26,6 @@ public class Mouselistener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
-            if (this.piece.getChosen() == true && this.piece.getId() == "Queen") {
-                this.logic.changeIfPawnAtEdge(piece, "Knight");
-            } else if (this.piece.getChosen() == true && this.piece.getId() == "Knight") {
-                this.logic.changeIfPawnAtEdge(piece, "Rook");
-            } else if (this.piece.getChosen() == true && this.piece.getId() == "Rook") {
-                this.logic.changeIfPawnAtEdge(piece, "Bishop");
-            } else if (this.piece.getChosen() == true && this.piece.getId() == "Bishop") {
-                this.logic.changeIfPawnAtEdge(piece, "Queen");
-            } 
-        }
     }
 
     @Override
@@ -44,18 +33,21 @@ public class Mouselistener implements MouseListener {
         int x = e.getX() / 60;
         int y = e.getY() / 60;
 
-        if (choosePiece == false && this.logic.findPiece(x, y) != null && this.logic.findPiece(x, y).getColor().equals(this.logic.turnColor())) {
-            this.piece = this.logic.findPiece(x, y);
-            this.piece.choose(true);
-            choosePiece = true;
-        } else if (this.choosePiece == true && this.piece == this.logic.findPiece(x, y)) {
-            this.piece.choose(false);
-            this.choosePiece = false;
-        } else if (this.choosePiece == true) {
-            gameOver = this.logic.movePiece(this.piece, this.logic.findSpot(x, y));
-            this.choosePiece = false;
-            this.piece.choose(false);
-        } 
+        if (this.gameOver == false) {
+            if (choosePiece == false && this.logic.findPiece(x, y) != null && this.logic.findPiece(x, y).getColor().equals(this.logic.turnColor())) {
+                this.piece = this.logic.findPiece(x, y);
+                this.piece.choose(true);
+                choosePiece = true;
+            } else if (this.choosePiece == true && this.piece == this.logic.findPiece(x, y)) {
+                this.piece.choose(false);
+                this.choosePiece = false;
+            } else if (this.choosePiece == true) {
+                this.gameOver = this.logic.movePiece(this.piece, this.logic.findSpot(x, y));
+                this.choosePiece = false;
+                this.piece.choose(false);
+            }   
+        }
+         
     }
 
     @Override

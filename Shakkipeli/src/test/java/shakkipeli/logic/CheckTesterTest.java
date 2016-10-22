@@ -23,7 +23,7 @@ public class CheckTesterTest {
     
     @Test 
     public void setUpWorks() {
-        this.tester.setPieces();
+        this.tester.setSpecificPieces();
         for (int x = 0; x < 8; x++) {
             assertEquals(this.board.getPiece(x, 1).getId(), "Pawn");
         }
@@ -48,6 +48,23 @@ public class CheckTesterTest {
         assertEquals(this.board.getPiece(1, 7).getId(), "Knight");
         assertEquals(this.board.getPiece(6, 7).getId(), "Knight");
     } 
+    
+    @Test
+    public void testForCheckingOpponentWorks() {
+        this.board.setPieces();
+        ChessPiece piece2 = this.board.getPiece(2, 1);
+        assertFalse(this.tester.testForCheckingYourself(piece2, this.board.getSpot(2, 1)));
+    }
+    
+    @Test
+    public void testForCheckingYourselfWorks2() {
+        Board board2 = new Board();
+        board2.setWhiteKing(4, 4);
+        ChessPiece piece = new Queen(4, 6, "Black");
+        board2.setPiece(piece);
+        this.tester = new CheckTester(board2);
+        assertFalse(this.tester.testForCheckingYourself(piece, this.board.getSpot(4, 4)));
+    }
     
     @Test 
     public void testCheckWorks() {
